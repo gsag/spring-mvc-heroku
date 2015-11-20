@@ -27,10 +27,216 @@
       <webapp-runner-tomcat.version>8.0.24.1</webapp-runner-tomcat.version>
       <maven-tomcat-plugin>2.2</maven-tomcat-plugin>
 
+      <!-- Spring Framework -->
+      <org.springframework.version>4.2.3.RELEASE</org.springframework.version>
+      <spring-data-jpa.version>1.9.0.RELEASE</spring-data-jpa.version>
+
+      <!-- Jackson JSON-->
+      <jackson.version>1.9.13</jackson.version>
+      <jackson-databind.version>2.6.1</jackson-databind.version>
+
+      <!-- JAVAX-->
+      <servlet-jsp.version>2.1</servlet-jsp.version>
+      <servlet-jsp-jstl.version>1.2</servlet-jsp-jstl.version>
+      <validation-api.version>1.1.0.Final</validation-api.version>
+
+      <!-- JUnit -->
+      <junit.version>4.12</junit.version>
+
+      <!-- MySQL -->
+      <!--<mysql-connector.version>5.1.36</mysql-connector.version>-->
+
+      <!-- Hibernate -->
+      <hibernate-core.version>4.3.11.Final</hibernate-core.version>
+      <hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
+      <hibernate-validator.version>5.2.0.Final</hibernate-validator.version>
+
+      <!-- Guava Cache Manager-->
+      <guava.version>18.0</guava.version>
+
+      <!-- Logging -->
+      <slf4j.version>1.7.12</slf4j.version>
+      <log4j.version>1.2.17</log4j.version>
+
+      <!-- Utilidades -->
+      <commons-lang3.version>3.4</commons-lang3.version>
+
   </properties>
 
   <dependencies>
+      <!-- Spring MVC -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-webmvc</artifactId>
+          <version>${org.springframework.version}</version>
+          <scope>compile</scope>
+          <exclusions>
+              <exclusion>
+                  <groupId>commons-logging</groupId>
+                  <artifactId>commons-logging</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
 
+      <!-- Spring Test -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-test</artifactId>
+          <version>${org.springframework.version}</version>
+          <scope>test</scope>
+      </dependency>
+
+      <!-- Spring transactions -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>${org.springframework.version}</version>
+          <scope>compile</scope>
+      </dependency>
+
+      <!-- Spring Data JPA -->
+      <dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-jpa</artifactId>
+          <version>${spring-data-jpa.version}</version>
+      </dependency>
+
+      <!-- Spring ORM -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-orm</artifactId>
+          <version>${org.springframework.version}</version>
+      </dependency>
+
+      <!-- Spring Context -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+          <version>${org.springframework.version}</version>
+          <scope>compile</scope>
+      </dependency>
+
+      <!-- Spring Context Support -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context-support</artifactId>
+          <version>${org.springframework.version}</version>
+      </dependency>
+
+      <!-- Outras dependencias Web -->
+      <dependency>
+          <groupId>javax.servlet.jsp</groupId>
+          <artifactId>jsp-api</artifactId>
+          <version>${servlet-jsp.version}</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>javax.servlet.jsp.jstl</groupId>
+          <artifactId>jstl-api</artifactId>
+          <version>${servlet-jsp-jstl.version}</version>
+          <exclusions>
+              <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>servlet-api</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
+
+      <!-- Testes Unitários -->
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>${junit.version}</version>
+          <scope>test</scope>
+      </dependency>
+
+      <!-- Hibernate -->
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-entitymanager</artifactId>
+          <version>${hibernate-core.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
+          <version>${hibernate-core.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.hibernate.javax.persistence</groupId>
+          <artifactId>hibernate-jpa-2.1-api</artifactId>
+          <version>${hibernate-jpa.version}</version>
+      </dependency>
+
+      <!-- JSR 303 with Hibernate Validator -->
+      <dependency>
+          <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
+          <version>${validation-api.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>${hibernate-validator.version}</version>
+      </dependency>
+
+      <!-- Jackson JSON Mapper -->
+      <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-mapper-asl</artifactId>
+          <version>${jackson.version}</version>
+      </dependency>
+
+      <!-- Jackson JSON Processor -->
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>${jackson-databind.version}</version>
+      </dependency>
+
+      <!-- Cache -->
+      <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+          <version>${guava.version}</version>
+      </dependency>
+
+      <!-- Utilidades -->
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+          <version>${commons-lang3.version}</version>
+          <scope>compile</scope>
+      </dependency>
+
+      <!-- Logging -->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>jcl-over-slf4j</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>${log4j.version}</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
   <build>
     <finalName>${project-name}</finalName>
