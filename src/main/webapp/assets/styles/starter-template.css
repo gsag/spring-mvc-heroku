@@ -1,0 +1,18 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.navbar-purple {
+  background-color: #5E478B;
+  border-color: #644987;
+}
+.navbar-header a{
+  color:white;
+}
+.navbar-header a:hover{
+  color: #EDEDED;
+}
+
