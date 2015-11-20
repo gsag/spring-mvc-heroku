@@ -24,6 +24,8 @@
       <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
       <maven-compiler-plugin.encoding>UTF-8</maven-compiler-plugin.encoding>
       <maven-dependecy-plugin.version>2.3</maven-dependecy-plugin.version>
+      <webapp-runner-tomcat.version>8.0.24.1</webapp-runner-tomcat.version>
+      <maven-tomcat-plugin>2.2</maven-tomcat-plugin>
 
   </properties>
 
@@ -52,6 +54,17 @@
             </configuration>
         </plugin>
 
+        <!-- Tomcat 7 Server for Development -->
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>${maven-tomcat-plugin}</version>
+            <configuration>
+                <port>9090</port>
+                <path>/</path>
+            </configuration>
+        </plugin>
+
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
@@ -65,7 +78,7 @@
                             <artifactItem>
                                 <groupId>com.github.jsimone</groupId>
                                 <artifactId>webapp-runner</artifactId>
-                                <version>8.0.24.0</version>
+                                <version>${webapp-runner-tomcat.version}</version>
                                 <destFileName>webapp-runner.jar</destFileName>
                             </artifactItem>
                         </artifactItems>
