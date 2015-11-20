@@ -7,10 +7,72 @@
   <version>0.1.0</version>
   <name>spring-mvc-heroku</name>
   <url>http://maven.apache.org</url>
+
+  <properties>
+
+      <!-- Nome do Projeto -->
+      <project-name>${project.artifactId}</project-name>
+
+      <!-- Java -->
+      <java.version>1.8</java.version>
+
+      <!-- Encoding do projeto -->
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+      <!-- Maven Config -->
+      <maven-war-plugin.version>2.6</maven-war-plugin.version>
+      <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+      <maven-compiler-plugin.encoding>UTF-8</maven-compiler-plugin.encoding>
+      <maven-dependecy-plugin.version>2.3</maven-dependecy-plugin.version>
+
+  </properties>
+
   <dependencies>
 
   </dependencies>
   <build>
-    <finalName>spring-mvc-heroku</finalName>
+    <finalName>${project-name}</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>${maven-war-plugin.version}</version>
+            <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven-compiler-plugin.version}</version>
+            <configuration>
+                <source>${java.version}</source>
+                <target>${java.version}</target>
+                <encoding>${maven-compiler-plugin.encoding}</encoding>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>${maven-dependecy-plugin.version}</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals><goal>copy</goal></goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>com.github.jsimone</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>8.0.24.0</version>
+                                <destFileName>webapp-runner.jar</destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
   </build>
 </project>
