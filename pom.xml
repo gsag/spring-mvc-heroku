@@ -43,8 +43,8 @@
       <!-- JUnit -->
       <junit.version>4.12</junit.version>
 
-      <!-- MySQL -->
-      <!--<mysql-connector.version>5.1.36</mysql-connector.version>-->
+      <!-- POSTGRESQL -->
+      <postgresql-driver.version>9.1-901-1.jdbc4</postgresql-driver.version>
 
       <!-- Hibernate -->
       <hibernate-core.version>4.3.11.Final</hibernate-core.version>
@@ -197,6 +197,13 @@
           <version>${jackson-databind.version}</version>
       </dependency>
 
+      <!-- POSTGRESQL -->
+      <dependency>
+          <groupId>postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>${postgresql-driver.version}</version>
+      </dependency>
+
       <!-- Cache -->
       <dependency>
           <groupId>com.google.guava</groupId>
@@ -213,30 +220,30 @@
       </dependency>
 
       <!-- Logging -->
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>jcl-over-slf4j</artifactId>
-          <version>${slf4j.version}</version>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.slf4j</groupId>-->
+          <!--<artifactId>jcl-over-slf4j</artifactId>-->
+          <!--<version>${slf4j.version}</version>-->
+      <!--</dependency>-->
 
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
-          <version>${slf4j.version}</version>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.slf4j</groupId>-->
+          <!--<artifactId>slf4j-api</artifactId>-->
+          <!--<version>${slf4j.version}</version>-->
+      <!--</dependency>-->
 
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
-          <version>${slf4j.version}</version>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.slf4j</groupId>-->
+          <!--<artifactId>slf4j-log4j12</artifactId>-->
+          <!--<version>${slf4j.version}</version>-->
+      <!--</dependency>-->
 
-      <dependency>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-          <version>${log4j.version}</version>
-          <scope>compile</scope>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>log4j</groupId>-->
+          <!--<artifactId>log4j</artifactId>-->
+          <!--<version>${log4j.version}</version>-->
+          <!--<scope>compile</scope>-->
+      <!--</dependency>-->
   </dependencies>
   <build>
     <finalName>${project-name}</finalName>
@@ -289,6 +296,30 @@
                             </artifactItem>
                         </artifactItems>
                     </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+        <!--Gera um shell script da classe Main do pacote example -->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>appassembler-maven-plugin</artifactId>
+            <version>1.1.1</version>
+            <configuration>
+                <assembleDirectory>target</assembleDirectory>
+                <programs>
+                    <program>
+                        <mainClass>com.spring.example.Main</mainClass>
+                        <name>main</name>
+                    </program>
+                </programs>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>assemble</goal>
+                    </goals>
                 </execution>
             </executions>
         </plugin>
