@@ -1,0 +1,1 @@
+Este pacote é destinado à classes de testes.

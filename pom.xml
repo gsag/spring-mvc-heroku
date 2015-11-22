@@ -11,21 +11,13 @@
   <properties>
 
       <!-- Nome do Projeto -->
-      <project-name>${project.artifactId}</project-name>
+      <project-name>${project.name}</project-name>
 
       <!-- Java -->
       <java.version>1.8</java.version>
 
       <!-- Encoding do projeto -->
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-      <!-- Maven Config -->
-      <maven-war-plugin.version>2.6</maven-war-plugin.version>
-      <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
-      <maven-compiler-plugin.encoding>UTF-8</maven-compiler-plugin.encoding>
-      <maven-dependecy-plugin.version>2.3</maven-dependecy-plugin.version>
-      <webapp-runner-tomcat.version>8.0.24.1</webapp-runner-tomcat.version>
-      <maven-tomcat-plugin>2.2</maven-tomcat-plugin>
 
       <!-- Spring Framework -->
       <org.springframework.version>4.2.3.RELEASE</org.springframework.version>
@@ -40,16 +32,24 @@
       <servlet-jsp-jstl.version>1.2</servlet-jsp-jstl.version>
       <validation-api.version>1.1.0.Final</validation-api.version>
 
+      <!-- Tomcat Servlet API -->
+      <tomcat-servlet-api.version>8.0.28</tomcat-servlet-api.version>
+
       <!-- JUnit -->
       <junit.version>4.12</junit.version>
 
       <!-- POSTGRESQL -->
-      <postgresql-driver.version>9.1-901-1.jdbc4</postgresql-driver.version>
+      <!--<postgresql-driver.version>9.1-901-1.jdbc4</postgresql-driver.version>-->
 
       <!-- Hibernate -->
       <hibernate-core.version>4.3.11.Final</hibernate-core.version>
       <hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
       <hibernate-validator.version>5.2.0.Final</hibernate-validator.version>
+
+      <!-- Thymeleaf -->
+      <thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
+      <thymeleaf-layout-dialect.version>1.2.8</thymeleaf-layout-dialect.version>
+      <thymeleaf-extras-springsecurity.version>2.1.2.RELEASE</thymeleaf-extras-springsecurity.version>
 
       <!-- Guava Cache Manager-->
       <guava.version>18.0</guava.version>
@@ -57,6 +57,14 @@
       <!-- Logging -->
       <!--<slf4j.version>1.7.12</slf4j.version>-->
       <!--<log4j.version>1.2.17</log4j.version>-->
+
+      <!-- Maven Config -->
+      <maven-war-plugin.version>2.6</maven-war-plugin.version>
+      <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+      <maven-compiler-plugin.encoding>${project.build.sourceEncoding}</maven-compiler-plugin.encoding>
+      <maven-dependecy-plugin.version>2.3</maven-dependecy-plugin.version>
+      <webapp-runner-tomcat.version>8.0.24.1</webapp-runner-tomcat.version>
+      <maven-tomcat-plugin>2.2</maven-tomcat-plugin>
 
       <!-- Utilidades -->
       <commons-lang3.version>3.4</commons-lang3.version>
@@ -144,6 +152,14 @@
           </exclusions>
       </dependency>
 
+      <!-- Tomcat Servlet API -->
+      <dependency>
+          <groupId>org.apache.tomcat</groupId>
+          <artifactId>tomcat-servlet-api</artifactId>
+          <version>${tomcat-servlet-api.version}</version>
+          <scope>provided</scope>
+      </dependency>
+
       <!-- Testes Unitários -->
       <dependency>
           <groupId>junit</groupId>
@@ -199,17 +215,32 @@
       </dependency>
 
       <!-- POSTGRESQL -->
-      <dependency>
-          <groupId>postgresql</groupId>
-          <artifactId>postgresql</artifactId>
-          <version>${postgresql-driver.version}</version>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>postgresql</groupId>-->
+          <!--<artifactId>postgresql</artifactId>-->
+          <!--<version>${postgresql-driver.version}</version>-->
+      <!--</dependency>-->
 
       <!-- Cache -->
       <dependency>
           <groupId>com.google.guava</groupId>
           <artifactId>guava</artifactId>
           <version>${guava.version}</version>
+      </dependency>
+
+      <!-- Thymeleaf -->
+      <dependency>
+          <groupId>org.thymeleaf</groupId>
+          <artifactId>thymeleaf-spring4</artifactId>
+          <version>${thymeleaf.version}</version>
+          <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>nz.net.ultraq.thymeleaf</groupId>
+          <artifactId>thymeleaf-layout-dialect</artifactId>
+          <version>${thymeleaf-layout-dialect.version}</version>
+          <scope>compile</scope>
       </dependency>
 
       <!-- Utilidades -->
@@ -303,30 +334,6 @@
                             </artifactItem>
                         </artifactItems>
                     </configuration>
-                </execution>
-            </executions>
-        </plugin>
-
-        <!--Gera um shell script da classe Main do pacote example -->
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>appassembler-maven-plugin</artifactId>
-            <version>1.1.1</version>
-            <configuration>
-                <assembleDirectory>target</assembleDirectory>
-                <programs>
-                    <program>
-                        <mainClass>com.spring.example.Main</mainClass>
-                        <name>main</name>
-                    </program>
-                </programs>
-            </configuration>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>assemble</goal>
-                    </goals>
                 </execution>
             </executions>
         </plugin>
