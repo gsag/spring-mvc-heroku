@@ -42,7 +42,7 @@
       <junit.version>4.12</junit.version>
 
       <!-- POSTGRESQL -->
-      <!--<postgresql-driver.version>9.1-901-1.jdbc4</postgresql-driver.version>-->
+      <postgresql-driver.version>9.1-901-1.jdbc4</postgresql-driver.version>
 
       <!-- Hibernate -->
       <hibernate-core.version>5.0.4.Final</hibernate-core.version>
@@ -218,11 +218,11 @@
       </dependency>
 
       <!-- POSTGRESQL -->
-      <!--<dependency>-->
-          <!--<groupId>postgresql</groupId>-->
-          <!--<artifactId>postgresql</artifactId>-->
-          <!--<version>${postgresql-driver.version}</version>-->
-      <!--</dependency>-->
+      <dependency>
+          <groupId>postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>${postgresql-driver.version}</version>
+      </dependency>
 
       <!-- Cache -->
       <dependency>
