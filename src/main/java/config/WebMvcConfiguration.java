@@ -14,7 +14,6 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
-import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -29,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableWebMvc
 @EnableCaching
-@ComponentScan(basePackages = {"java"})
+@ComponentScan(basePackages = {"controller"})
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     public static final String DEFAULT_CHAR_ENCODING = "UTF-8";
@@ -42,7 +41,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
      * Configure Template Resolver - Thymeleaf
      */
     @Bean
-    public TemplateResolver webTemplateResolver() {
+    public TemplateResolver templateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
         templateResolver.setPrefix(TEMPLATE_RESOLVER_PREFIX);
         templateResolver.setSuffix(TEMPLATE_RESOLVER_SUFFIX);
@@ -56,11 +55,10 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
      * Configure Template Engine - Thymeleaf
      */
     @Bean
-    public TemplateEngine templateEngine() {
+    public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(webTemplateResolver());
+        templateEngine.setTemplateResolver(templateResolver());
         templateEngine.addDialect(new LayoutDialect());
-
         return templateEngine;
     }
 
@@ -70,7 +68,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine((SpringTemplateEngine) templateEngine());
+        viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding(TEMPLATE_RESOLVER_CHAR_ENCODING);
         return viewResolver;
     }
@@ -84,11 +82,10 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     }
 
     /*
-     * Configure View Resolver
+     * Configure Default Servlet Handling
      */
     @Override
-    public void configureDefaultServletHandling(
-            DefaultServletHandlerConfigurer configurer) {
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 

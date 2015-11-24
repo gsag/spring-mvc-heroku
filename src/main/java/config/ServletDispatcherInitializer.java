@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 public class ServletDispatcherInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { JPAConfiguration.class };
+        return new Class<?>[] { DatabaseConfiguration.class };
     }
 
     @Override
@@ -32,7 +32,6 @@ public class ServletDispatcherInitializer extends AbstractAnnotationConfigDispat
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding(WebMvcConfiguration.DEFAULT_CHAR_ENCODING);
         characterEncodingFilter.setForceEncoding(true);
-
         return new Filter[] { characterEncodingFilter };
     }
 
