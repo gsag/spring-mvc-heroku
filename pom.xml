@@ -34,6 +34,7 @@
 
       <!-- JAVAX-->
       <validation-api.version>1.1.0.Final</validation-api.version>
+      <java-transaction-api.version>1.1</java-transaction-api.version>
 
       <!-- Tomcat Servlet API -->
       <tomcat-servlet-api.version>8.0.28</tomcat-servlet-api.version>
@@ -153,6 +154,12 @@
           <artifactId>jsp-api</artifactId>
           <version>${jsp.version}</version>
           <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>javax.transaction</groupId>
+          <artifactId>jta</artifactId>
+          <version>${java-transaction-api.version}</version>
       </dependency>
 
       <!-- Tomcat Servlet API -->
