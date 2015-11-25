@@ -23,6 +23,8 @@ import java.net.URISyntaxException;
 public class ProductionDatabaseConfiguration{
 
     @Autowired
+    private Environment env;
+    @Autowired
     private HibernateConfiguration hibernateConfiguration;
 
     private static final Logger logger = Logger.getLogger(ProductionDatabaseConfiguration.class);
@@ -30,7 +32,7 @@ public class ProductionDatabaseConfiguration{
     //    * Data Source Production
     @Bean
     public BasicDataSource dataSource() throws URISyntaxException {
-        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+        URI dbUri = new URI(env.getProperty("DATABASE_URL"));
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
