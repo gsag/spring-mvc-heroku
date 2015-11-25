@@ -1,5 +1,6 @@
 package config;
 
+import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -14,7 +15,10 @@ import javax.servlet.ServletException;
 public class ServletDispatcherInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { DatabaseConfiguration.class };
+        return new Class<?>[] {
+                HibernateConfiguration.class, DevelopmentDatabaseConfiguration.class,
+                ProductionDatabaseConfiguration.class
+        };
     }
 
     @Override
@@ -39,6 +43,6 @@ public class ServletDispatcherInitializer extends AbstractAnnotationConfigDispat
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
         servletContext.addListener(RequestContextListener.class);
-        servletContext.setInitParameter("spring.profiles.active", "dev");
+        servletContext.setInitParameter(AbstractEnvironment.DEFAULT_PROFILES_PROPERTY_NAME, "development");
     }
 }

@@ -14,9 +14,11 @@
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
+        <fileset id="fileset" name="Spring Application Context" removed="false" profiles="development,production">
           <file>file://$MODULE_DIR$/src/main/java/config/WebMvcConfiguration.java</file>
           <file>file://$MODULE_DIR$/src/main/java/config/DatabaseConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/config/HibernateConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/config/ProductionDatabaseConfiguration.java</file>
         </fileset>
       </configuration>
     </facet>
