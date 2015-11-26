@@ -1,10 +1,7 @@
 package config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -19,6 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 @Profile("development")
 @EnableTransactionManagement
+@ComponentScan(basePackages = {"entity, repository, util"})
 @PropertySource({"classpath:database.properties"})
 public class DevelopmentDatabaseConfiguration {
     private static final String PROPERTY_NAME_DATABASE_DRIVER   = "db.driver";

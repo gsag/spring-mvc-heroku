@@ -3,6 +3,7 @@ package config;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
@@ -20,6 +21,7 @@ import java.net.URISyntaxException;
  */
 @Configuration
 @Profile("production")
+@ComponentScan(basePackages = {"entity, repository, util"})
 @EnableTransactionManagement
 public class ProductionDatabaseConfiguration{
 
