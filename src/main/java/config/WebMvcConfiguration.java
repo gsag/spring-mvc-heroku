@@ -1,6 +1,8 @@
 package config;
 
 import com.google.common.cache.CacheBuilder;
+import controller.WelcomeController;
+import entity.Exemplo;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -18,17 +20,18 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
+import repository.AbstractRepository;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-/**
+/*
  * Created by guilherme on 22/11/15.
  */
 @Configuration
 @EnableWebMvc
 @EnableCaching
-@ComponentScan(basePackages = {"controller, entity, repository, util"})
+@ComponentScan(basePackages = {"controller", "util"})
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     public static final String DEFAULT_CHAR_ENCODING = "UTF-8";

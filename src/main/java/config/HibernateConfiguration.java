@@ -7,7 +7,7 @@ import org.springframework.core.env.Environment;
 
 import java.util.Properties;
 
-/**
+/*
  * Created by guilherme on 24/11/15.
  */
 @Configuration
@@ -32,6 +32,18 @@ public class HibernateConfiguration {
     }
 
     public String getEntityManagerPackage(){
-        return PROPERTY_ENTITYMANAGER_PACKAGE;
+        return env.getRequiredProperty(PROPERTY_ENTITYMANAGER_PACKAGE);
+    }
+
+    public String getHibernateDialect(){
+        return env.getRequiredProperty(PROPERTY_HIBERNATE_DIALECT);
+    }
+
+    public Boolean getHibernateShowSql() {
+        return Boolean.parseBoolean(env.getRequiredProperty(PROPERTY_HIBERNATE_SHOW_SQL));
+    }
+
+    public Boolean getHibernateFormatSql() {
+        return Boolean.parseBoolean(env.getRequiredProperty(PROPERTY_HIBERNATE_FORMAT_SQL));
     }
 }

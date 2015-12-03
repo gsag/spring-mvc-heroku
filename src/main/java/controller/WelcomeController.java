@@ -1,14 +1,15 @@
 package controller;
 
-import entity.LogAccess;
+import entity.Exemplo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import repository.LogAccessRepository;
+import repository.service.ExemploService;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/welcome")
@@ -17,18 +18,27 @@ public class WelcomeController {
 	private static final Logger logger = Logger.getLogger(WelcomeController.class);
 
     @Autowired
-    LogAccessRepository repository;
+    ExemploService exemploService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String novo() {
         logger.info("Acessou url /welcome");
 
-        LogAccess access = new LogAccess(LocalDate.now());
-        try {
-            repository.save(access);
-        } catch (Exception e) {
-            logger.error(e.getMessage(),e);
-        }
+        Exemplo exemplo = new Exemplo();
+//        exemplo.setAccessDate(LocalDate.now());
+        exemploService.saveEntity(exemplo);
+
+        logger.info(exemploService.countEntities());
+        logger.info(exemploService.findEntityById(1L));
+        logger.info(exemploService.hasEntity(1L));
+//        Optional<Exemplo> recuperado = exemploService.findEntityById(6L);
+//        Exemplo e = recuperado.get();
+//        e.setAccessDate(LocalDate.now());
+//        exemploService.updateEntity(e);
+//        exemploService.deleteEntity(e);
+
+        logger.info(exemploService.findAllEntities());
+
 
         return "hello";
 	}
