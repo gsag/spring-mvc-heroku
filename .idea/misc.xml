@@ -7,6 +7,9 @@
     <file type="web" url="file://$PROJECT_DIR$" />
     <type id="Spring" />
   </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES5" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

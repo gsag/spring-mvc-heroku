@@ -1,7 +1,10 @@
 package entity;
 
+import util.LocalDateConverter;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /*
  * Created by guilherme on 30/11/15.
@@ -16,8 +19,9 @@ public class Exemplo implements Serializable {
     @Column(name = "id")
     private Long id;
 
-//    @Column(name = "accessDate")
-//    private LocalDate accessDate;
+    @Column(name = "accessDate")
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate accessDate;
 
     public Exemplo() {
     }
@@ -30,18 +34,19 @@ public class Exemplo implements Serializable {
         this.id = id;
     }
 
-//    public LocalDate getAccessDate() {
-//        return accessDate;
-//    }
-//
-//    public void setAccessDate(LocalDate accessDate) {
-//        this.accessDate = accessDate;
-//    }
+    public LocalDate getAccessDate() {
+        return accessDate;
+    }
+
+    public void setAccessDate(LocalDate accessDate) {
+        this.accessDate = accessDate;
+    }
 
     @Override
     public String toString() {
         return "Exemplo{" +
                 "id=" + id +
+                ", accessDate=" + accessDate +
                 '}';
     }
 

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import repository.service.ExemploService;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/welcome")
 public class WelcomeController {
@@ -21,20 +24,20 @@ public class WelcomeController {
 	public String novo() {
         logger.info("Acessou url /welcome");
 
-        Exemplo exemplo = new Exemplo();
+//        Exemplo exemplo = new Exemplo();
 //        exemplo.setAccessDate(LocalDate.now());
-        exemploService.saveEntity(exemplo);
-
-        logger.info(exemploService.countEntities());
-        logger.info(exemploService.findEntityById(1L));
-        logger.info(exemploService.hasEntity(1L));
-//        Optional<Exemplo> recuperado = exemploService.findEntityById(6L);
+//        exemploService.saveEntity(exemplo);
+//
+//        logger.info(exemploService.countEntities());
+//        logger.info(exemploService.findEntityById(1L));
+//        logger.info(exemploService.hasEntity(1L));
+//        Optional<Exemplo> recuperado = exemploService.findEntityById(1L);
 //        Exemplo e = recuperado.get();
-//        e.setAccessDate(LocalDate.now());
+//        e.setAccessDate(LocalDate.parse("2015-12-02"));
 //        exemploService.updateEntity(e);
 //        exemploService.deleteEntity(e);
-
-        logger.info(exemploService.findAllEntities());
+//
+//        logger.info(exemploService.findAllEntities());
 
 
         return "hello";
