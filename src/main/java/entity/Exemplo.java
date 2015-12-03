@@ -1,10 +1,7 @@
 package entity;
 
-import util.LocalDateConverter;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 /*
  * Created by guilherme on 30/11/15.

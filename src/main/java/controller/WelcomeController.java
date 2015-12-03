@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import repository.service.ExemploService;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/welcome")
 public class WelcomeController {
