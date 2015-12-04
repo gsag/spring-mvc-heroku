@@ -11,12 +11,12 @@ import java.time.LocalDate;
 @Converter(autoApply = true)
 public class LocalDateConverter implements AttributeConverter<LocalDate, Date> {
     @Override
-    public java.sql.Date convertToDatabaseColumn(LocalDate entityValue) {
-        return java.sql.Date.valueOf(entityValue);
+    public Date convertToDatabaseColumn(LocalDate entityValue) {
+        return (entityValue != null) ? Date.valueOf(entityValue) : null;
     }
 
     @Override
     public LocalDate convertToEntityAttribute(java.sql.Date databaseValue) {
-        return databaseValue.toLocalDate();
+        return (databaseValue != null) ? databaseValue.toLocalDate() : null;
     }
 }
