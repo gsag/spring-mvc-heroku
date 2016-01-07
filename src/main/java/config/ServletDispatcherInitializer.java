@@ -9,21 +9,23 @@ import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-/**
+/*
  * Created by guilherme on 22/11/15.
  */
+
 public class ServletDispatcherInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[] {
-                HibernateConfiguration.class, DevelopmentDatabaseConfiguration.class,
-                ProductionDatabaseConfiguration.class
+                WebMvcConfiguration.class,HibernateConfiguration.class,
+                DevelopmentDatabaseConfiguration.class,ProductionDatabaseConfiguration.class,
+                SecurityConfiguration.class
         };
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { WebMvcConfiguration.class };
+        return new Class<?>[] {};
     }
 
     @Override

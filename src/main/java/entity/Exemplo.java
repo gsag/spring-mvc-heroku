@@ -14,8 +14,12 @@ import java.time.LocalDate;
 public class Exemplo implements Serializable {
     private static final long serialVersionUID = 613393136989349826L;
 
+    //    Para gerar sequences, use o código abaixo
+    //    @SequenceGenerator(name = "log_seq_gen", sequenceName = "exemplo_sequence")
+    //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq_gen")
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -49,9 +53,4 @@ public class Exemplo implements Serializable {
                 ", accessDate=" + accessDate +
                 '}';
     }
-
-    //    Para gerar sequences, use o código abaixo
-//    @SequenceGenerator(name = "log_seq_gen", sequenceName = "exemplo_sequence")
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq_gen")
-
 }
