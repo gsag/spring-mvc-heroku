@@ -4,7 +4,6 @@ import entity.User;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
@@ -16,13 +15,12 @@ import java.util.List;
  * Created by guilherme on 05/02/16.
  */
 @Repository
-public class UserRepository extends AbstractRepository<User,Long> implements UserDetailsService{
+public class UserRepository extends AbstractRepository<User,Long>{
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails findUserByUsername(String username) throws UsernameNotFoundException {
         List<User> users = entityManager.unwrap(Session.class)
                 .createCriteria(User.class)
                 .add(Restrictions.eq("username",username)).list();

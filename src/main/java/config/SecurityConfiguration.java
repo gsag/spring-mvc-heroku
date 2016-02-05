@@ -26,12 +26,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/welcome/admin").hasRole("ADMIN")
                 .antMatchers("/welcome").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").permitAll()
+                .and().formLogin()/*.loginPage("/login").permitAll()*/
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
         auth.userDetailsService(users).passwordEncoder(new BCryptPasswordEncoder());
     }
 

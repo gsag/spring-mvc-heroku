@@ -17,9 +17,6 @@ public class WelcomeController {
     @Autowired
     ExemploService exemploService;
 
-    @Autowired
-    UserService userService;
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String novo() {
         logger.info("Acessou url /welcome");
@@ -39,7 +36,6 @@ public class WelcomeController {
 //
 //        logger.info(exemploService.findAllEntities());
 
-        logger.info(userService.findAllEntities().isEmpty());
         return "hello";
 	}
 }
