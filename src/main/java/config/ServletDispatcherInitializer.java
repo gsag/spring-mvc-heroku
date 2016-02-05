@@ -17,9 +17,8 @@ public class ServletDispatcherInitializer extends AbstractAnnotationConfigDispat
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[] {
-                WebMvcConfiguration.class,HibernateConfiguration.class,
-                DevelopmentDatabaseConfiguration.class,ProductionDatabaseConfiguration.class,
-                SecurityConfiguration.class
+                SecurityConfiguration.class, WebMvcConfiguration.class,HibernateConfiguration.class,
+                DevelopmentDatabaseConfiguration.class,ProductionDatabaseConfiguration.class
         };
     }
 
