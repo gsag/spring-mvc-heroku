@@ -1,18 +1,41 @@
+/* Default colors : http://paletton.com/palette.php?uid=14m0u0khopy7qFicguDmvkps9eJ */
 body {
   padding-top: 50px;
 }
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
 }
+
+.section-top-padding{
+    padding-top: 2.5em;
+}
+
 .navbar-purple {
   background-color: #5E478B;
-  border-color: #644987;
+  border-color: #41296F;
 }
-.navbar-header a{
-  color:white;
+
+.navbar-purple .container .navbar-header a,
+.navbar-purple .container #navbar .navbar-nav li a{
+    color: #FFF;
 }
-.navbar-header a:hover{
+
+.navbar-purple .container .navbar-header a:hover,
+.navbar-purple .container #navbar .navbar-nav li a:hover{
   color: #EDEDED;
 }
 
+.navbar-purple .container #navbar .navbar-nav li a:hover{
+  background-color: #816DA7;
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover{
+    background-color: #AD9EC8;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+    background-color: #FFF;
+}
