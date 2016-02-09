@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
+
 /**
  * Created by guilherme on 08/02/16.
  * Authentication Controller
@@ -18,8 +20,7 @@ public class AuthenticationController {
     private static final Logger logger = Logger.getLogger(AuthenticationController.class);
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, @ModelAttribute("user") User user) {
-        model.addAttribute(user);
+    public String getLoginForm() {
         return "auth/login";
     }
 }
