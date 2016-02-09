@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       >
 <head>
     <meta charset="utf-8"/>
@@ -44,7 +45,9 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/auth/login">Login</a></li>
+                    <li sec:authorize="isAnonymous()">
+                        <a href="/auth/login">Login</a>
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
