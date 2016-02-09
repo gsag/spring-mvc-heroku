@@ -1,6 +1,7 @@
 package config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,26 +15,28 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 /*
  * Created by guilherme on 07/01/16.
  */
+@Configuration
+@ComponentScan(basePackages = {"repository.service"})
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService users;
+    private UserDetailsService user;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/welcome/admin").hasRole("ADMIN")
                 .antMatchers("/welcome").permitAll()
-//                .anyRequest().authenticated()
-                .and().formLogin().loginPage("/auth/login").permitAll()
-                .and().logout()/*.logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout"))*/;
+                .anyRequest().authenticated()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/welcome").failureUrl("/login?error").permitAll()
+                .and().logout()/*.logoutRequestMatcher(new AntPathRequestMatcher("login?logout"))*/;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
-        auth.userDetailsService(users).passwordEncoder(new BCryptPasswordEncoder());
+        auth.inMemoryAuthentication().withUser("guilherme").password("guiadmin").roles("ADMIN");
+        auth.userDetailsService(user).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override

@@ -7,7 +7,7 @@
 
 <section id="loginSection" layout:fragment="content">
     <div class="container">
-        <form id="loginForm" name="loginForm" th:action="@{/auth/login}" method="post"
+        <form id="loginForm" name="loginForm" th:action="@{/login}" method="post"
               class="form-horizontal section-top-padding" aria-labelledby="loginForm">
 
             <div th:if="${#httpServletRequest.getParameter('error')}" class="alert alert-danger">
