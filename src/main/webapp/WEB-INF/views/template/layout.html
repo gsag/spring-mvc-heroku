@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-      >
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -31,46 +30,56 @@
     <![endif]-->
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-purple navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/welcome">
-                    <i class="fa fa-leaf"></i> spring-mvc-heroku</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <!--<li th:if="${#httpServletRequest.remoteUser != null}">
-                        <a><p th:text="${#httpServletRequest.remoteUser}"/></a>
-                    </li>-->
-                    <li sec:authorize="isAnonymous()">
-                        <a href="/login">Login <i class="fa fa-sign-in"></i></a>
-                    </li>
-                    <li sec:authorize="isAuthenticated()">
-                        <a href="/logout">Logout <i class="fa fa-sign-out"></i></a>
-                    </li>
-                </ul>
-            </div><!--/.nav-collapse -->
+<nav class="navbar navbar-default navbar-purple navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/welcome">
+                <i class="fa fa-leaf"></i> spring-mvc-heroku</a>
         </div>
-    </nav>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li th:if="${#httpServletRequest.remoteUser != null}">
+                    <a><p th:text="${#httpServletRequest.remoteUser}"/></a>
+                </li>-->
+                <li sec:authorize="isAnonymous()">
+                    <a href="/login">Login <i class="fa fa-sign-in"></i></a>
+                </li>
+                <li class="dropdown" sec:authorize="isAuthenticated()">
+                    <a id="userActions" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <!--/*@thymesVar id="gravatar" type="String"*/-->
+                        <img class="img-circle" th:src="${gravatar}"/>
+                        <!--/*@thymesVar id="activeUser" type="String"*/-->
+                        <span th:text="${activeUser}"/> <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/logout">Logout <i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
 
-    <section layout:fragment="content">
-        <article>Conteudo principal</article>
-    </section>
+<section layout:fragment="content">
+    <article>Conteudo principal</article>
+</section>
 
-    <footer>
-    </footer>
+<footer>
+</footer>
 
-    <!-- Bootstrap core JavaScript ================================================== -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-            crossorigin="anonymous"></script>
-    <script th:src="@{/assets/scripts/bootstrap.plugins.js}"></script>
+<!-- Bootstrap core JavaScript ================================================== -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<script th:src="@{/assets/scripts/bootstrap.plugins.js}"></script>
 </body>
 </html>

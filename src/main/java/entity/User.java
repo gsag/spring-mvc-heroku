@@ -58,6 +58,14 @@ public class User implements UserDetails, Serializable {
         return username;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return Boolean.TRUE;
@@ -76,5 +84,10 @@ public class User implements UserDetails, Serializable {
     @Override
     public boolean isEnabled() {
         return Boolean.TRUE;
+    }
+
+    @Override
+    public String toString() {
+        return  idUser + " ; " + name + " ; " + username;
     }
 }

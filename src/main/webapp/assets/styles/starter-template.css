@@ -18,8 +18,19 @@ body {
 }
 
 .navbar-purple .container .navbar-header a,
-.navbar-purple .container #navbar .navbar-nav li a{
+.navbar-purple .container #navbar .navbar-nav li a,
+.navbar-purple .container #navbar .navbar-nav .dropdown .dropdown-menu > li a:hover{
     color: #FFF;
+}
+
+.navbar-purple .container #navbar .navbar-nav .dropdown .dropdown-menu > li a{
+    color: #333;
+}
+
+@media screen and (max-width: 767px) {
+    .navbar-purple .container #navbar .navbar-nav .dropdown .dropdown-menu > li a{
+        color: #FFF;
+    }
 }
 
 .navbar-purple .container .navbar-header a:hover,
@@ -38,4 +49,20 @@ body {
 
 .navbar-default .navbar-toggle .icon-bar{
     background-color: #FFF;
+}
+
+.navbar-purple .navbar-nav>.open>a,
+.navbar-purple .navbar-nav>.open>a:focus,
+.navbar-purple .navbar-nav>.open>a:hover{
+    color: #555;
+    background-color: #816DA7;
+}
+
+.navbar-purple .container #navbar .navbar-nav .dropdown .dropdown-menu > li a:hover{
+    background-color: #AD9EC8;
+}
+
+.dropdown a#userActions{
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
