@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-purple navbar-fixed-top" th:fragment="header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/welcome">
+                <i class="fa fa-leaf"></i> spring-mvc-heroku</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="isAnonymous()">
+                    <a th:href="@{/register}">Create your Account <i class="fa fa-user-plus"></i></a>
+                </li>
+                <li sec:authorize="isAnonymous()">
+                    <a th:href="@{/login}">Log in <i class="fa fa-sign-in"></i></a>
+                </li>
+                <li class="dropdown" sec:authorize="isAuthenticated()">
+                    <a id="userActions" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <!--/*@thymesVar id="gravatar" type="String"*/-->
+                        <img class="img-circle" th:src="${gravatar}"/>
+                        <!--/*@thymesVar id="activeUser" type="String"*/-->
+                        <span th:text="${activeUser}"/> <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/logout}">Logout <i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+</body>
+</html>
