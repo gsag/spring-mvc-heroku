@@ -18,7 +18,7 @@ public class WelcomeController {
     ExemploService exemploService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String novo() {
+	public String welcomePage() {
         logger.info("Acessou url /welcome");
 
 //        Exemplo exemplo = new Exemplo();

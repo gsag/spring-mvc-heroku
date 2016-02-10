@@ -45,11 +45,14 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <!--<li th:if="${#httpServletRequest.remoteUser != null}">
+                        <a><p th:text="${#httpServletRequest.remoteUser}"/></a>
+                    </li>-->
                     <li sec:authorize="isAnonymous()">
                         <a href="/login">Login <i class="fa fa-sign-in"></i></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <a href="/login?logout">Logout <i class="fa fa-sign-out"></i></a>
+                        <a href="/logout">Logout <i class="fa fa-sign-out"></i></a>
                     </li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -68,5 +71,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
+    <script th:src="@{/assets/scripts/bootstrap.plugins.js}"></script>
 </body>
 </html>

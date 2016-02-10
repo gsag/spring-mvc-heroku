@@ -27,15 +27,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/welcome/admin").hasRole("ADMIN")
-                .antMatchers("/welcome").permitAll()
+                .antMatchers("/**", "/welcome").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/welcome").failureUrl("/login?error").permitAll()
-                .and().logout()/*.logoutRequestMatcher(new AntPathRequestMatcher("login?logout"))*/;
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("login?logout"));
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("guilherme").password("guiadmin").roles("ADMIN");
         auth.userDetailsService(user).passwordEncoder(new BCryptPasswordEncoder());
     }
 

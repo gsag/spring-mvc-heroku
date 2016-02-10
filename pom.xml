@@ -73,6 +73,7 @@
 
       <!-- Utilidades -->
       <commons-lang3.version>3.4</commons-lang3.version>
+      <jgravatar.version>1.0</jgravatar.version>
 
   </properties>
 
@@ -279,6 +280,12 @@
           <artifactId>commons-lang3</artifactId>
           <version>${commons-lang3.version}</version>
           <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>com.timgroup</groupId>
+          <artifactId>jgravatar</artifactId>
+          <version>${jgravatar.version}</version>
       </dependency>
 
       <!-- Logging -->

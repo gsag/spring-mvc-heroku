@@ -1,9 +1,15 @@
 package controller;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by guilherme on 08/02/16.
@@ -17,5 +23,14 @@ public class AuthenticationController {
     public String getLoginForm() {
         logger.info("Acessou url /login");
         return "login";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutUser(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.isAuthenticated()){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
     }
 }
