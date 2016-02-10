@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="template/layout"
->
+      layout:decorator="template/layout">
 
 <section id="loginSection" layout:fragment="content">
     <div class="container">
@@ -53,7 +52,7 @@
         </form>
         <section id="SignUp" class="col-md-offset-1 col-md-6 col-sm-12 col-xs-12 text-center">
             <p class="text-muted">
-                <strong>Not registred yet? Create your account <a th:href="@{/register}">here</a>.</strong>
+                <strong>Not registred yet? Create your account <a th:href="@{/user}">here</a>.</strong>
             </p>
         </section>
     </div><!-- /.container -->
