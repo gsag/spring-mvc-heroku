@@ -29,7 +29,7 @@
                     <label for="usernameField" class="col-sm-1 control-label">E-mail</label>
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <input type="text" class="form-control"
-                               id="usernameField" name="username" placeholder="type your e-mail as username"/>
+                               id="usernameField" name="username" placeholder="Type your e-mail address as username"/>
                     </div>
                     <a data-toggle="tooltip" data-placement="right" title="Ex: youremail@mail.com">
                         <i class="fa fa-info-circle"></i>
@@ -39,7 +39,7 @@
                     <label for="passwordField" class="col-sm-1 control-label">Password</label>
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <input type="password" class="form-control"
-                               id="passwordField" name="password" placeholder="type your password"/>
+                               id="passwordField" name="password" placeholder="Type your password"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -51,6 +51,11 @@
                 </div>
             </fieldset>
         </form>
+        <section id="SignUp" class="col-md-offset-1 col-md-6 col-sm-12 col-xs-12 text-center">
+            <p class="text-muted">
+                <strong>Not registred yet? Create your account <a th:href="@{/login}">here</a>.</strong>
+            </p>
+        </section>
     </div><!-- /.container -->
 </section>
 </html>

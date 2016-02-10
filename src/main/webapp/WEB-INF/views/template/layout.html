@@ -45,9 +45,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <!--<li th:if="${#httpServletRequest.remoteUser != null}">
-                    <a><p th:text="${#httpServletRequest.remoteUser}"/></a>
-                </li>-->
+                <li sec:authorize="isAnonymous()">
+                    <a href="/login">Create your Account <i class="fa fa-user-plus"></i></a>
+                </li>
                 <li sec:authorize="isAnonymous()">
                     <a href="/login">Login <i class="fa fa-sign-in"></i></a>
                 </li>

@@ -14,7 +14,7 @@ import java.util.List;
  * Created by guilherme on 07/01/16.
  */
 @Entity
-@Table(name = "usuario")
+@Table(name = "user_details")
 public class User implements UserDetails, Serializable {
 
     @Id
@@ -26,11 +26,15 @@ public class User implements UserDetails, Serializable {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
+    @Column(length = 60, name = "password")
     private String password;
 
-    @Column(name = "name")
+    @Column(length = 70, name = "name")
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 1, name = "gender")
+    private Gender gender;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
