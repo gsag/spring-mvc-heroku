@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template/layout">
+
+	<section layout:fragment="content">
+		<div class="container">
+			<div class="starter-template">
+				<h1><span th:text="#{welcome.title}"/> <i class="fa fa-magic"></i></h1>
+				<p class="lead"><b>spring-mvc-heroku </b><span th:text="#{welcome.info}"></span></p>
+				<a href="https://github.com/gsag/spring-mvc-heroku" target="_blank">
+					<p class="lead"><span th:text="#{welcome.github}"></span> <i class="fa fa-github"></i></p>
+				</a>
+			</div>
+		</div><!-- /.container -->
+	</section>
+</html>

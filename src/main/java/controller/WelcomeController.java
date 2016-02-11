@@ -32,6 +32,6 @@ public class WelcomeController {
             model.addAttribute("gravatar",Utils.getGravatarUrl(user.getUsername()));
             logger.info("Usuário ativo: "+ user);
         }
-        return "hello";
+        return "welcome";
 	}
 }

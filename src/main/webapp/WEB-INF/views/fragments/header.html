@@ -20,10 +20,10 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li sec:authorize="isAnonymous()">
-                    <a th:href="@{/register}">Create your Account <i class="fa fa-user-plus"></i></a>
+                    <a th:href="@{/register}"><span th:text="#{header.signup}"></span> <i class="fa fa-user-plus"></i></a>
                 </li>
                 <li sec:authorize="isAnonymous()">
-                    <a th:href="@{/login}">Log in <i class="fa fa-sign-in"></i></a>
+                    <a th:href="@{/login}"><span th:text="#{header.login}"></span> <i class="fa fa-sign-in"></i></a>
                 </li>
                 <li class="dropdown" sec:authorize="isAuthenticated()">
                     <a id="userActions" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -31,10 +31,22 @@
                         <!--/*@thymesVar id="gravatar" type="String"*/-->
                         <img class="img-circle" th:src="${gravatar}"/>
                         <!--/*@thymesVar id="activeUser" type="String"*/-->
-                        <span th:text="${activeUser}"/> <i class="fa fa-caret-down"></i></a>
+                        <span th:text="${activeUser}"></span> <i class="fa fa-caret-down"></i></a>
                     <ul class="dropdown-menu">
                         <li role="separator" class="divider"></li>
-                        <li><a th:href="@{/logout}">Logout <i class="fa fa-sign-out"></i></a></li>
+                        <li>
+                            <a th:href="@{/logout}">
+                                <span th:text="#{header.userDetails.logout}"></span>
+                                <i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a id="languageSelection" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <span th:text="#{header.languageDropdown}"></span> <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?lang=pt_BR"><span class="flag-icon flag-icon-br"></span> Português - Brasil</a></li>
+                        <li><a href="?lang=en"><span class="flag-icon flag-icon-us"></span> English</a></li>
                     </ul>
                 </li>
             </ul>

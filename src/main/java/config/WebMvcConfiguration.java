@@ -14,6 +14,8 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -72,15 +74,45 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding(TEMPLATE_RESOLVER_CHAR_ENCODING);
+        viewResolver.setOrder(1);
         return viewResolver;
+    }
+
+    /*
+     * Configure MessageSource to provide internationalized messages
+     */
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource bundle = new ReloadableResourceBundleMessageSource();
+        bundle.setBasename("classpath:i18n/messages");
+        bundle.setDefaultEncoding(TEMPLATE_RESOLVER_CHAR_ENCODING);
+        bundle.setCacheSeconds(5);
+        return bundle;
     }
 
     /*
      * Configure Locale Resolver
      */
-    @Bean
+    @Bean(name = "localeResolver")
     public LocaleResolver localeResolver() {
-        return new FixedLocaleResolver(new Locale("pt", "BR"));
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(new Locale("pt","BR"));
+        return localeResolver;
+    }
+
+    /*
+    * Configure Locale Interceptor
+    */
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor(){
+        LocaleChangeInterceptor localeChangeInterceptor=new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("lang");
+        return localeChangeInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
     }
 
     /*
@@ -98,18 +130,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
-    }
-
-    /*
-     * Configure MessageSource to provide internationalized messages
-     */
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource bundle = new ReloadableResourceBundleMessageSource();
-        bundle.setBasename("messages");
-        bundle.setDefaultEncoding(TEMPLATE_RESOLVER_CHAR_ENCODING);
-        bundle.setCacheSeconds(5);
-        return bundle;
     }
 
     /*

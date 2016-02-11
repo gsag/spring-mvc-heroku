@@ -33,7 +33,7 @@ public class User implements UserDetails, Serializable {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 1, name = "gender")
+    @Column(length = 1, name = "gender", nullable = false)
     private Gender gender;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -68,6 +68,14 @@ public class User implements UserDetails, Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     @Override
