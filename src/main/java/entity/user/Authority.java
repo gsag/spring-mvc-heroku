@@ -1,6 +1,7 @@
 package entity.user;
 
 import org.springframework.security.core.GrantedAuthority;
+import security.AuthorityType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

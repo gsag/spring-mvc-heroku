@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import security.AuthorityType;
 import util.BooleanConverter;
 import util.GenderConverter;
 import util.LocalDateConverter;

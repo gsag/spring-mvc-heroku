@@ -11,17 +11,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import security.LocaleSettingAuthenticationSuccessHandler;
 
 /*
  * Created by guilherme on 07/01/16.
  */
 @Configuration
-@ComponentScan(basePackages = {"repository.service"})
+@ComponentScan(basePackages = {"repository.service", "security"})
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService user;
+
+    @Autowired
+    private LocaleSettingAuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -29,7 +33,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/welcome/admin").hasRole("ADMIN")
                 .antMatchers("/**", "/welcome").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/welcome").failureUrl("/login?error").permitAll()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/welcome").failureUrl("/login?error")
+                .successHandler(authenticationSuccessHandler).permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("login?logout"));
     }
 
