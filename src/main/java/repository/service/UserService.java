@@ -1,17 +1,12 @@
 package repository.service;
 
-import entity.user.Gender;
-import entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repository.UserRepository;
-
-import java.time.LocalDate;
 
 /*
  * Created by guilherme on 05/02/16.

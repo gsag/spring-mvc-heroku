@@ -8,6 +8,7 @@ import java.util.Locale;
  * Constants for useful use on language settings
  */
 public final class LocaleConstants implements Cloneable, Serializable {
+    private static final long serialVersionUID = -3417795369060512901L;
 
     /** Useful constant for language.
      *  International English

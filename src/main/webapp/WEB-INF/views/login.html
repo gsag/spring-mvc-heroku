@@ -13,38 +13,40 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <strong>Invalid username and/or password. Please, verify your credentials.</strong>
+                <strong><span th:text="#{login.error.badCredentials}"></span></strong>
             </div>
             <div th:if="${#httpServletRequest.getParameter('logout')}" class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <strong>You have been logged out successfuly.</strong>
+                <strong><span th:text="#{login.info.logoutSuccess}"></span></strong>
             </div>
 
             <fieldset>
-                <legend>Please login with your credentials</legend>
+                <legend><span th:text="#{login.title}"></span></legend>
                 <div class="form-group">
-                    <label for="usernameField" class="col-sm-1 control-label">E-mail</label>
+                    <label for="usernameField" class="col-sm-1 control-label"><span th:text="#{login.form.field.email}">
+                    </span></label>
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <input type="text" class="form-control"
-                               id="usernameField" name="username" placeholder="Type your e-mail address as username"/>
+                               id="usernameField" name="username" th:placeholder="#{login.form.field.email.placeholder}"/>
                     </div>
                     <a data-toggle="tooltip" data-placement="right" title="Ex: youremail@mail.com">
                         <i class="fa fa-info-circle"></i>
                     </a>
                 </div>
                 <div class="form-group">
-                    <label for="passwordField" class="col-sm-1 control-label">Password</label>
+                    <label for="passwordField" class="col-sm-1 control-label"><span th:text="#{login.form.field.password}">
+                    </span></label>
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <input type="password" class="form-control"
-                               id="passwordField" name="password" placeholder="Type your password"/>
+                               id="passwordField" name="password" th:placeholder="#{login.form.field.password.placeholder}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-6 col-sm-12 col-xs-12">
                         <button type="submit" class="btn btn-default btn-lg btn-block">
-                            Log in <i class="fa fa-sign-in"></i>
+                            <span th:text="#{login.form.button.submit}"></span> <i class="fa fa-sign-in"></i>
                         </button>
                     </div>
                 </div>
@@ -52,7 +54,8 @@
         </form>
         <section id="SignUp" class="col-md-offset-1 col-md-6 col-sm-12 col-xs-12 text-center">
             <p class="text-muted">
-                <strong>Not registred yet? Create your account <a th:href="@{/user}">here</a>.</strong>
+                <strong><span th:text="#{login.registered.info}"></span> <a th:href="@{/register}">
+                    <span th:text="#{login.registered.here}"></span></a>.</strong>
             </p>
         </section>
     </div><!-- /.container -->
