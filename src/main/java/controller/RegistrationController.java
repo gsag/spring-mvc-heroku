@@ -1,6 +1,6 @@
 package controller;
 
-import entity.User;
+import entity.user.User;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

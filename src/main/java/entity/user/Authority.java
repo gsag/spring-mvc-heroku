@@ -1,28 +1,38 @@
-package entity;
+package entity.user;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /*
  * Created by guilherme on 07/01/16.
  */
 @Entity
-@Table(name = "role")
-public class Role implements GrantedAuthority, Serializable{
+@Table(name = "AUTHORITY")
+public class Authority implements GrantedAuthority, Serializable{
     private static final long serialVersionUID = -5551195578445678669L;
 
+    @NotNull
+    @Size(min = 0, max = 50)
     @Id
+    @Column(length = 50, nullable = false)
     private String credential;
 
     @Deprecated
-    public Role() {}
+    public Authority() {}
 
-    private Role(String credential){
+    public Authority(String credential){
         this.credential = credential;
+    }
+
+    public Authority(AuthorityType credentialType){
+        this.credential = credentialType.name();
     }
 
     @Override
@@ -35,9 +45,9 @@ public class Role implements GrantedAuthority, Serializable{
         if (this == o) return Boolean.TRUE;
         if (o == null || getClass() != o.getClass()) return Boolean.FALSE;
 
-        Role role = (Role) o;
+        Authority authority = (Authority) o;
 
-        return credential.equals(role.credential);
+        return credential.equals(authority.credential);
     }
 
     @Override
@@ -46,5 +56,10 @@ public class Role implements GrantedAuthority, Serializable{
         int result = 1;
         result = prime * result + ((credential == null) ? 0 : credential.hashCode());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return credential;
     }
 }

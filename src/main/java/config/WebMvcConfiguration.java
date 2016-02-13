@@ -13,7 +13,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.i18n.FixedLocaleResolver;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
@@ -21,6 +21,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
+import util.LocaleConstants;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -96,7 +97,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     @Bean(name = "localeResolver")
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setDefaultLocale(new Locale("pt","BR"));
+        localeResolver.setDefaultLocale(LocaleConstants.PORTUGUESE_BR);
         return localeResolver;
     }
 

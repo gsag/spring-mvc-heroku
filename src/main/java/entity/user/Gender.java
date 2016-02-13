@@ -1,4 +1,4 @@
-package entity;
+package entity.user;
 
 /**
  * Created by guilherme on 10/02/16.
@@ -14,6 +14,11 @@ public enum Gender {
     }
 
     public String getGender() {
+        return gender;
+    }
+
+    @Override
+    public String toString() {
         return gender;
     }
 }

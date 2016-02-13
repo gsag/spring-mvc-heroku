@@ -1,6 +1,6 @@
 package repository;
 
-import entity.User;
+import entity.user.User;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.security.core.userdetails.UserDetails;

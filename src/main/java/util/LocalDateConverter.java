@@ -8,7 +8,7 @@ import java.time.LocalDate;
 /*
  * Created by guilherme on 25/11/15.
  */
-@Converter(autoApply = true)
+@Converter
 public class LocalDateConverter implements AttributeConverter<LocalDate, Date> {
     @Override
     public Date convertToDatabaseColumn(LocalDate entityValue) {
