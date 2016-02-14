@@ -24,13 +24,4 @@ public class AuthenticationController {
         logger.info("Acessou url /login");
         return "login";
     }
-
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutUser(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth.isAuthenticated()){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/login?logout";
-    }
 }

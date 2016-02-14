@@ -3,7 +3,8 @@ package security;
 import entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.LocaleResolver;
 
@@ -15,18 +16,19 @@ import java.util.Locale;
 
 /**
  * Created by guilherme on 13/02/16.
- * Handler for dynamic locale setting by user preference on log in.
+ * Handler for dynamic locale setting by user preference on log out.
  */
 @Component
-public class LocaleSettingAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler{
+public class LocaleSettingLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler{
 
     @Autowired
     private LocaleResolver localeResolver;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        setLocale(authentication, request, response);
-        super.onAuthenticationSuccess(request, response, authentication);
+    public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+        setLocale(authentication, httpServletRequest, httpServletResponse);
+        setDefaultTargetUrl("/login?logout");
+        super.onLogoutSuccess(httpServletRequest, httpServletResponse, authentication);
     }
 
     protected void setLocale(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
