@@ -36,11 +36,26 @@
                         <li>
                             <form id="logout" th:action="@{/logout}" method="post"></form>
                             <a href="javascript:document.getElementById('logout').submit()">
-                                <span th:text="#{header.userDetails.logout}"></span>
                                 <i class="fa fa-sign-out"></i>
+                                <span th:text="#{header.userDetails.logout}"></span>
                             </a>
                         </li>
+
                         <li role="separator" class="divider"></li>
+
+                        <li>
+                            <a>
+                                <i class="fa fa-archive"></i>
+                                <span th:text="#{header.userDetails.myaccount}"></span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#preferencesModal">
+                                <i class="fa fa-cogs"></i>
+                                <span th:text="#{header.userDetails.preferences}"></span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="dropdown">

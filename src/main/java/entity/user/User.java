@@ -185,16 +185,6 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .append("id", id)
-                .append("username", username)
-                .append("firstName", firstName)
-                .append("lastName", lastName)
-                .append("gender", gender)
-                .append("registerDate", registerDate)
-                .append("activated", activated)
-                .append("langKey", langKey)
-                .append("authorities", authorities)
-                .toString();
+        return "[ " + id + " , " + username + " , " + authorities + " ]";
     }
 }
