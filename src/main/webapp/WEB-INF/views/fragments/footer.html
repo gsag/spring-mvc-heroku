@@ -3,7 +3,22 @@
 <head>
 </head>
 <body>
-<footer th:fragment="footer">
+<footer class="text-center" th:fragment="footer">
+    <span class="text-muted">
+        <span th:text="#{footer.copyright}"></span>
+        &copy;
+        <script type="text/javascript">
+            var d = new Date();
+            document.write(d.getFullYear());
+        </script>
+        <a href="https://github.com/gsag" th:target="_blank"> Guilherme Alves</a>.
+    </span>
+    <br/>
+    <span class="text-muted">
+        <a href="https://github.com/gsag/spring-mvc-heroku/blob/master/LICENSE"
+           th:target="_blank" th:text="#{footer.license}">
+        </a>
+    </span>
 </footer>
 </body>
 </html>
