@@ -15,14 +15,14 @@
     <div th:replace="fragments/styles"></div>
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
+<header th:replace="fragments/header :: header"></header>
 <div th:replace="user/preferences :: preferences"></div>
 
 <section layout:fragment="content">
     <article>Conteudo principal</article>
 </section>
 
-<div th:replace="fragments/footer :: footer"></div>
+<footer th:replace="fragments/footer :: footer"></footer>
 
 <div th:replace="fragments/scripts"></div>
 </body>
