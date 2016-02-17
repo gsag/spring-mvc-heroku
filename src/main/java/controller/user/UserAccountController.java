@@ -1,4 +1,4 @@
-package controller;
+package controller.user;
 
 import controller.service.ViewModelService;
 import entity.user.User;
@@ -10,22 +10,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
-@RequestMapping("/welcome")
-public class WelcomeController{
+/**
+ * Created by guilherme on 16/02/16.
+ * User Account Controller for manipulating user account operations
+ */
 
-	private static final Logger logger = Logger.getLogger(WelcomeController.class);
+@Controller
+@RequestMapping("/account")
+public class UserAccountController {
+
+    private static final Logger logger = Logger.getLogger(UserAccountController.class);
 
     @Autowired
     ViewModelService viewModelService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String getWelcomePage(Model model, @AuthenticationPrincipal User user) {
-        logger.info("Acessou url /welcome");
+    @RequestMapping(value = "preferences", method = RequestMethod.GET)
+    public String getPreferencesPage(Model model, @AuthenticationPrincipal User user) {
         if(user != null){
             viewModelService.getModelWithUserAttributes(model,user);
-            logger.info("Usuário ativo: "+ user);
         }
-        return "welcome";
-	}
+        return "user/preferences";
+    }
 }

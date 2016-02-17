@@ -1,4 +1,4 @@
-package controller;
+package controller.user;
 
 import entity.user.User;
 import org.apache.log4j.Logger;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by guilherme on 10/02/16.
- * Registration Controller for manipulate user operations related with sign up.
+ * Registration Controller for manipulating user operations related with sign up.
  */
 @Controller
 @RequestMapping("/register")
