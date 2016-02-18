@@ -12,7 +12,7 @@ body {
 }
 
 .starter-template {
-    padding: 2.5em 1em;
+    padding: 2.5em 0em;
     text-align: center;
 }
 
@@ -73,6 +73,18 @@ body {
 .dropdown a#userActions {
     padding-top: 8px;
     padding-bottom: 8px;
+}
+
+.list-group-item {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #816DA7;
+    border-color: #816DA7;
 }
 
 footer {

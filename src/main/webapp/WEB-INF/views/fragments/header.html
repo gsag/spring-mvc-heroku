@@ -44,16 +44,9 @@
                         <li role="separator" class="divider"></li>
 
                         <li>
-                            <a>
+                            <a th:href="@{/account/profile}">
                                 <i class="fa fa-archive"></i>
                                 <span th:text="#{header.userDetails.myaccount}"></span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a th:href="@{/account/preferences}">
-                                <i class="fa fa-cogs"></i>
-                                <span th:text="#{header.userDetails.preferences}"></span>
                             </a>
                         </li>
                     </ul>

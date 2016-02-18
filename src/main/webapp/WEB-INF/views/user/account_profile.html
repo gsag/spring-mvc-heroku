@@ -1,18 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="template/layout">
 
-<section id="preferencesSection" layout:fragment="content">
+<section id="profileSection" layout:fragment="content">
     <div class="container">
-        <form id="langForm" name="f" th:action="@{/account/preferences}" method="post"
-              class="form-horizontal section-top-padding" aria-labelledby="langForm">
-            <fieldset>
-                <legend><i class="fa fa-cogs"></i> <span th:text="#{header.userDetails.preferences}"></span></legend>
-            </fieldset>
-        </form>
-    </div><!-- /.container -->
+        <div class="starter-template row">
+            <aside id="MenuProfileLinks" class="col-md-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        <i class="fa fa-user"></i>
+                        <span th:text="#{profile.links.userInfo}"></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-cogs"></i>
+                        <span th:text="#{profile.links.preferences}"></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-wrench"></i>
+                        <span th:text="#{profile.links.accountSettings}"></span>
+                    </a>
+                </div>
+            </aside>
+
+            <section id="profileContent">
+                <div class="col-md-9">
+                    <div class="panel panel-default">
+                        <div class="panel-body" layout:fragment="profile-content">
+                            <article>Conteudo principal</article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </section>
+
 </html>

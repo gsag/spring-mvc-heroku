@@ -24,11 +24,11 @@ public class UserAccountController {
     @Autowired
     ViewModelService viewModelService;
 
-    @RequestMapping(value = "preferences", method = RequestMethod.GET)
-    public String getPreferencesPage(Model model, @AuthenticationPrincipal User user) {
+    @RequestMapping(value = "profile", method = RequestMethod.GET)
+    public String getProfilePage(Model model, @AuthenticationPrincipal User user) {
         if(user != null){
             viewModelService.getModelWithUserAttributes(model,user);
         }
-        return "user/preferences";
+        return "user/account_profile";
     }
 }
