@@ -12,7 +12,6 @@ $(document).ready(function() {
 /* Change active class for list-group-itens*/
 $(document).ready(function(){
     $('.list-group a').click(function(e) {
-        e.preventDefault()
         $that = $(this);
         $('.list-group').find('a').removeClass('active');
         $that.addClass('active');

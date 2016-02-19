@@ -14,8 +14,10 @@ import util.Utils;
 public class ViewModelService {
 
     public Model getModelWithUserAttributes(Model model, User user){
-        model.addAttribute("activeUser", user.getFirstName() + " " + user.getLastName());
-        model.addAttribute("gravatar", Utils.getGravatarUrl(user.getUsername()));
+        if(user != null) {
+            model.addAttribute("activeUser", user.getFirstName() + " " + user.getLastName());
+            model.addAttribute("gravatar", Utils.getGravatarUrl(user.getUsername()));
+        }
         return model;
     }
 }
