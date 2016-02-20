@@ -34,6 +34,7 @@ public class UserAccountController {
     @RequestMapping(value = {"profile", "profile/{path}"}, method = RequestMethod.GET)
     public String getProfilePage(@PathVariable Optional<String> path, Model model, @AuthenticationPrincipal User user) {
         viewModelService.getModelWithUserAttributes(model,user);
-        return "user/" + pathService.getViewNameByPath(path);
+        pathService.getModelWithRequestURI(model);
+        return "user/account/" + pathService.getViewNameByPath(path);
     }
 }

@@ -1,6 +1,7 @@
 package controller.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
@@ -37,6 +38,10 @@ public class ProfilePathService {
     public String getViewNameByPath(Optional<String> path){
         return (path.isPresent() && isPathValid(path))
                 ? DEFAULT_PROFILE_PREFIX + path.get()
-                : "account_profile";
+                : DEFAULT_PROFILE_PREFIX + "info";
+    }
+
+    public Model getModelWithRequestURI(Model model){
+        return model.addAttribute("requestURI","/account/profile");
     }
 }

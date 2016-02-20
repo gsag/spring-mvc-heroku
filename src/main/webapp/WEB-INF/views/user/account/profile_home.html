@@ -9,15 +9,23 @@
         <div class="starter-template row">
             <aside id="MenuProfileLinks" class="col-md-3">
                 <div class="list-group">
-                    <a href="/account/profile/info" class="list-group-item active">
+                    <!--/*@thymesVar id="requestURI" type="String"*/-->
+                    <a th:href="@{/account/profile/info}" class="list-group-item"
+                       th:classappend="${
+                            (#httpServletRequest.getRequestURI() == requestURI+'/info'
+                            || #httpServletRequest.getRequestURI() == requestURI
+                            || #httpServletRequest.getRequestURI() == requestURI+'/') ? 'active':''
+                       }">
                         <i class="fa fa-user"></i>
                         <span th:text="#{profile.links.userInfo}"></span>
                     </a>
-                    <a href="#" class="list-group-item">
+                    <a th:href="@{/account/profile/preferences}" class="list-group-item"
+                       th:classappend="${#httpServletRequest.getRequestURI() == requestURI+'/preferences' ? 'active':''}">
                         <i class="fa fa-cogs"></i>
                         <span th:text="#{profile.links.preferences}"></span>
                     </a>
-                    <a href="#" class="list-group-item">
+                    <a th:href="@{/account/profile/settings}" class="list-group-item"
+                       th:classappend="${#httpServletRequest.getRequestURI() == requestURI+'/settings' ? 'active':''}">
                         <i class="fa fa-wrench"></i>
                         <span th:text="#{profile.links.accountSettings}"></span>
                     </a>

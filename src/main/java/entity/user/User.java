@@ -42,6 +42,11 @@ public class User implements UserDetails, Serializable {
     @Column(length = 60, name = "password")
     private String password;
 
+    @Transient
+    @NotNull
+    @Size(min = 6, max = 60)
+    private String confirmPassword;
+
     @Size(max = 70)
     @Column(length = 70, name = "first_name")
     private String firstName;
@@ -106,6 +111,14 @@ public class User implements UserDetails, Serializable {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -159,7 +172,7 @@ public class User implements UserDetails, Serializable {
         return authorities;
     }
 
-    public void setNewCredentialInAuthorities(AuthorityType credentialType){
+    public void setNewCredentialInAuthorities(AuthorityType credentialType) {
         this.authorities.add(new Authority(credentialType));
     }
 
@@ -186,5 +199,24 @@ public class User implements UserDetails, Serializable {
     @Override
     public String toString() {
         return "[ " + id + " , " + username + " , " + authorities + " ]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (getId() != null ? !getId().equals(user.getId()) : user.getId() != null) return false;
+        return getUsername() != null ? getUsername().equals(user.getUsername()) : user.getUsername() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
+        return result;
     }
 }

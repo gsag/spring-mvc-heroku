@@ -35,7 +35,7 @@
                     <ul class="dropdown-menu">
                         <li>
                             <form id="logout" th:action="@{/logout}" method="post"></form>
-                            <a href="javascript:document.getElementById('logout').submit()">
+                            <a onclick="document.getElementById('logout').submit();" href="javascript:void(0);">
                                 <i class="fa fa-sign-out"></i>
                                 <span th:text="#{header.userDetails.logout}"></span>
                             </a>

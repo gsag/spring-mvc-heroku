@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template/layout">
+
+<section id="registerSection" class="section-top-padding" layout:fragment="content">
+    <div class="container">
+
+        <form th:action="@{/register}" th:object="${user}" method="post">
+
+            <fieldset>
+                <legend><i class="fa fa-user-plus"></i> <span th:text="#{login.title}"></span></legend>
+
+                <div class="row">
+                    <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                        <label for="userName">username</label>
+                        <input type="text" class="form-control" id="userName" placeholder="UserName"
+                               th:field="*{username}"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                        <label for="firstName">first name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="FirstName"
+                               th:field="*{firstName}"/>
+                    </div>
+
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                        <label for="lastName">last name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="LastName"
+                               th:field="*{lastName}"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                               th:field="*{password}"/>
+                    </div>
+
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                        <label for="confirmPassword">Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Password"
+                               th:field="*{confirmPassword}"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="selectGender">Qual seu gênero?</label>
+                        <select id="selectGender" class="form-control" th:field="*{gender}">
+                            <!--/*@thymesVar id="genders" type="entity.user.Gender"*/-->
+                            <!--/*@thymesVar id="sex" type="java.lang.Object"*/-->
+                            <option th:each="sex : ${genders}"
+                                    th:value="${{sex}}">
+                                <span th:if="${sex eq T(entity.user.Gender).MALE}"
+                                      th:text="#{register.form.field.gender.male}">
+                                </span>
+                                <span th:if="${sex eq T(entity.user.Gender).FEMALE}"
+                                      th:text="#{register.form.field.gender.female}">
+                                </span>
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="selectLanguages">Qual idioma você prefere?</label>
+                        <select id="selectLanguages" class="form-control" th:field="*{langKey}">
+                            <!--/*@thymesVar id="languages" type="java.util.Locale"*/-->
+                            <option th:each="locale : ${languages}"
+                                    th:value="${{locale}}">
+                                <span th:if="${locale eq T(util.LocaleConstants).ENGLISH}"
+                                      th:text="#{register.form.field.lang.en}">
+                                </span>
+                                <span th:if="${locale eq T(util.LocaleConstants).PORTUGUESE_BR}"
+                                      th:text="#{register.form.field.lang.pt_BR}">
+                                </span>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <button type="submit" class="btn btn-default btn-lg btn-block">
+                                <span th:text="#{register.form.button.submit}"></span> <i class="fa fa-plus-square-o"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div><!-- /.container -->
+</section>
+</html>
