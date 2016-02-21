@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="template/layout">
 
 <section id="registerSection" class="section-top-padding" layout:fragment="content">
     <div class="container">
 
-        <form th:action="@{/register}" th:object="${user}" method="post">
+        <form id="registerForm" th:action="@{/register}" th:object="${user}" method="post">
 
             <fieldset>
                 <legend><i class="fa fa-user-plus"></i> <span th:text="#{login.title}"></span></legend>
