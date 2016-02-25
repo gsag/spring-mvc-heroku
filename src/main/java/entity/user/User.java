@@ -1,7 +1,7 @@
 package entity.user;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import security.AuthorityType;
@@ -33,7 +33,7 @@ public class User implements UserDetails, Serializable {
     private Long id;
 
     @Email
-    @NotNull
+    @NotEmpty
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
@@ -47,11 +47,13 @@ public class User implements UserDetails, Serializable {
     @Size(min = 6, max = 60)
     private String confirmPassword;
 
-    @Size(max = 70)
+    @NotEmpty
+    @Size(min = 3, max = 70)
     @Column(length = 70, name = "first_name")
     private String firstName;
 
-    @Size(max = 70)
+    @NotEmpty
+    @Size(min = 2, max = 70)
     @Column(length = 70, name = "last_name")
     private String lastName;
 

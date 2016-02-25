@@ -33,8 +33,6 @@ public class RegistrationController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String register(Model model, @Valid @ModelAttribute User user, BindingResult result){
-        logger.info(user.getGender());
-        logger.info(user.getLastName());
         if (result.hasErrors()) {
             return getRegisterForm(model,user);
         }else{

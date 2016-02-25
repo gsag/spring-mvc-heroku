@@ -87,6 +87,12 @@ body {
     border-color: #816DA7;
 }
 
+.alert {
+    padding:0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+}
+
 footer {
     position: absolute;
     left: 0;
