@@ -65,10 +65,10 @@
 
       <!-- Maven Config -->
       <maven-war-plugin.version>2.6</maven-war-plugin.version>
-      <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+      <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
       <maven-compiler-plugin.encoding>${project.build.sourceEncoding}</maven-compiler-plugin.encoding>
-      <maven-dependecy-plugin.version>2.3</maven-dependecy-plugin.version>
-      <webapp-runner-tomcat.version>8.0.24.1</webapp-runner-tomcat.version>
+      <maven-dependecy-plugin.version>2.10</maven-dependecy-plugin.version>
+      <webapp-runner-tomcat.version>8.0.30.2</webapp-runner-tomcat.version>
       <maven-tomcat-plugin>2.2</maven-tomcat-plugin>
 
       <!-- Utilidades -->
