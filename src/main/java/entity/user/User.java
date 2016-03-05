@@ -69,6 +69,9 @@ public class User implements UserDetails, Serializable {
     @Convert(converter = BooleanConverter.class)
     private boolean activated;
 
+    @Column(name = "activate_key", nullable = false, length = 128)
+    private String activateKey;
+
     @Size(min = 2, max = 5)
     @Column(name = "lang_key", length = 5)
     private String langKey;
@@ -185,7 +188,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public boolean isAccountNonLocked() {
-        return Boolean.TRUE;
+        return isActivated();
     }
 
     @Override

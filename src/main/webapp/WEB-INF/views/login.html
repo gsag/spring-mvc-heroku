@@ -13,7 +13,19 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <strong><span th:text="#{login.error.badCredentials}"></span></strong>
+                <div class="error">
+                    <strong>
+                        <i class="fa fa-exclamation-triangle"></i>
+                        <span th:text="#{login.error.title}"></span>
+                    </strong>
+                    <br/>
+                    <span th:if="${#httpSession.getValue('SPRING_SECURITY_LAST_EXCEPTION').getClass().getSimpleName() eq 'LockedException'}"
+                          th:text="|#{login.error.cause} #{AbstractUserDetailsAuthenticationProvider.locked}|">
+                    </span>
+                    <span th:if="${#httpSession.getValue('SPRING_SECURITY_LAST_EXCEPTION').getClass().getSimpleName() eq 'BadCredentialsException'}"
+                          th:text="|#{login.error.cause} #{AbstractUserDetailsAuthenticationProvider.badCredentials}|">
+                    </span>
+                </div>
             </div>
             <div th:if="${#httpServletRequest.getParameter('logout')}" class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

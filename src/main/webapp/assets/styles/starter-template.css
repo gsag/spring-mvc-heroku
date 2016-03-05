@@ -87,7 +87,7 @@ body {
     border-color: #816DA7;
 }
 
-.alert {
+form fieldset .row .form-group .alert {
     padding:0.5em;
     margin-top: 0.5em;
     margin-bottom: 0em;

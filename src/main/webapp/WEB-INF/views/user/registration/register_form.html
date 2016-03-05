@@ -9,12 +9,13 @@
         <form id="registerForm" th:action="@{/register}" th:object="${user}" method="post">
 
             <fieldset>
-                <legend><i class="fa fa-user-plus"></i> <span th:text="#{login.title}"></span></legend>
+                <legend><i class="fa fa-user-plus"></i> <span th:text="#{register.title}"></span></legend>
 
                 <div class="row">
                     <div class="form-group col-md-8 col-sm-12 col-xs-12">
-                        <label for="userName">username</label>
-                        <input type="text" class="form-control" id="username" placeholder="UserName"
+                        <label for="userName" th:text="#{register.form.field.username}"></label>
+                        <input type="text" class="form-control" id="username"
+                               th:placeholder="#{register.form.field.username.placeholder}"
                                th:field="*{username}"/>
                         <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
                               class="alert" th:errorclass="alert-danger">
@@ -24,8 +25,9 @@
 
                 <div class="row">
                     <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                        <label for="firstName">first name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="FirstName"
+                        <label for="firstName" th:text="#{register.form.field.firstname}"></label>
+                        <input type="text" class="form-control" id="firstName"
+                               th:placeholder="#{register.form.field.firstname.placeholder}"
                                th:field="*{firstName}"/>
                         <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
                              class="alert" th:errorclass="alert-danger">
@@ -33,8 +35,9 @@
                     </div>
 
                     <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                        <label for="lastName">last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="LastName"
+                        <label for="lastName" th:text="#{register.form.field.lastname}"></label>
+                        <input type="text" class="form-control" id="lastName"
+                               th:placeholder="#{register.form.field.lastname.placeholder}"
                                th:field="*{lastName}"/>
                         <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
                               class="alert" th:errorclass="alert-danger"></div>
@@ -43,16 +46,18 @@
 
                 <div class="row">
                     <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password"
+                        <label for="password" th:text="#{register.form.field.password}"></label>
+                        <input type="password" class="form-control" id="password"
+                               th:placeholder="#{register.form.field.password.placeholder}"
                                th:field="*{password}"/>
                         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                               class="alert" th:errorclass="alert-danger"></div>
                     </div>
 
                     <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                        <label for="confirmPassword">Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Password"
+                        <label for="confirmPassword" th:text="#{register.form.field.confirmpassword}"></label>
+                        <input type="password" class="form-control" id="confirmPassword"
+                               th:placeholder="#{register.form.field.confirmpassword.placeholder}"
                                th:field="*{confirmPassword}"/>
                         <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"
                               class="alert" th:errorclass="alert-danger"></div>
@@ -61,7 +66,7 @@
 
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <label for="selectGender">Qual seu gênero?</label>
+                        <label for="selectGender" th:text="#{register.form.field.gender}"></label>
                         <select id="selectGender" class="form-control" th:field="*{gender}">
                             <!--/*@thymesVar id="genders" type="entity.user.Gender"*/-->
                             <!--/*@thymesVar id="sex" type="java.lang.Object"*/-->
@@ -78,7 +83,7 @@
                     </div>
 
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <label for="selectLanguages">Qual idioma você prefere?</label>
+                        <label for="selectLanguages" th:text="#{register.form.field.lang}"></label>
                         <select id="selectLanguages" class="form-control" th:field="*{langKey}">
                             <!--/*@thymesVar id="languages" type="java.util.Locale"*/-->
                             <option th:each="locale : ${languages}"
