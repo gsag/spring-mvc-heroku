@@ -36,9 +36,10 @@
       <!-- JAVAX-->
       <validation-api.version>1.1.0.Final</validation-api.version>
       <java-transaction-api.version>1.1</java-transaction-api.version>
+      <java-mail-api.version>1.4.7</java-mail-api.version>
 
       <!-- Tomcat Servlet API -->
-      <tomcat-servlet-api.version>8.0.28</tomcat-servlet-api.version>
+      <tomcat-servlet-api.version>8.0.32</tomcat-servlet-api.version>
 
       <!-- JUnit -->
       <junit.version>4.12</junit.version>
@@ -313,6 +314,13 @@
           <version>${log4j.version}</version>
           <scope>compile</scope>
       </dependency>
+
+      <dependency>
+          <groupId>javax.mail</groupId>
+          <artifactId>mail</artifactId>
+          <version>${java-mail-api.version}</version>
+      </dependency>
+
   </dependencies>
   <build>
     <finalName>${project-name}</finalName>
