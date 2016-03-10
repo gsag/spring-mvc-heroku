@@ -27,7 +27,7 @@ public class WelcomeController{
 	public String getWelcomePage(Model model, @AuthenticationPrincipal User user) {
         viewModelService.getModelWithUserAttributes(model,user);
         logger.info("Usuário ativo: "+ user);
-        emailService.sendEmail("gsag.dh@gmail.com","Oi querida!","Acesso: "+user+" isso foi um teste bem sucedido!");
+        emailService.sendEmail("gsag-tjv@hotmail.com","Teste de Email","Acesso: "+user+" isso foi um teste bem sucedido!");
         return "welcome";
 	}
 }

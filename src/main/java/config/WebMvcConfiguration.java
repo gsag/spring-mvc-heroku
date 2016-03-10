@@ -18,6 +18,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 import util.LocaleConstants;
@@ -35,6 +36,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     public static final String DEFAULT_CHAR_ENCODING = "UTF-8";
     private static final String TEMPLATE_RESOLVER_PREFIX = "/WEB-INF/views/";
+    private static final String EMAIL_TEMPLATE_RESOLVER_PREFIX = "/mail/";
     private static final String TEMPLATE_RESOLVER_SUFFIX = ".html";
     private static final String TEMPLATE_RESOLVER_TEMPLATE_MODE = "HTML5";
     private static final String TEMPLATE_RESOLVER_CHAR_ENCODING = DEFAULT_CHAR_ENCODING;
@@ -43,13 +45,26 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
      * Configure Template Resolver - Thymeleaf
      */
     @Bean
-    public TemplateResolver templateResolver() {
+    public TemplateResolver webTemplateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
         templateResolver.setPrefix(TEMPLATE_RESOLVER_PREFIX);
         templateResolver.setSuffix(TEMPLATE_RESOLVER_SUFFIX);
         templateResolver.setTemplateMode(TEMPLATE_RESOLVER_TEMPLATE_MODE);
         templateResolver.setCharacterEncoding(TEMPLATE_RESOLVER_CHAR_ENCODING);
         templateResolver.setCacheable(false);
+        templateResolver.setOrder(2);
+        return templateResolver;
+    }
+
+    /**
+     * THYMELEAF: Template Resolver for email templates.
+     */
+    @Bean
+    public TemplateResolver emailTemplateResolver() {
+        TemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setPrefix(EMAIL_TEMPLATE_RESOLVER_PREFIX);
+        templateResolver.setTemplateMode(TEMPLATE_RESOLVER_TEMPLATE_MODE);
+        templateResolver.setOrder(1);
         return templateResolver;
     }
 
@@ -59,7 +74,8 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.addTemplateResolver(webTemplateResolver());
+        templateEngine.addTemplateResolver(emailTemplateResolver());
         templateEngine.addDialect(new LayoutDialect());
         templateEngine.addDialect(new SpringSecurityDialect());
         return templateEngine;
