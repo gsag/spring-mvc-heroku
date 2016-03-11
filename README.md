@@ -3,9 +3,19 @@ A Spring MVC application, which can easily be deployed to Heroku.
 
 This application was created following the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
 
+## Features
+
+You will find in this project:
+
+- Integration with the Web Framework Spring MVC.
+- Configurations done through Java config and annotations.
+- Integration with Thymeleaf templates.
+- Integration and authentication with Spring Security.
+
+
 ## Running Locally
 
-Make sure you have **Java** and **Maven** installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+Make sure you have **Java 8** and **Maven** installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
 
 ```sh
 $ git clone https://github.com/gsag/spring-mvc-heroku.git
@@ -33,3 +43,6 @@ Besides, you can configure automatic deploys by using a Github repository branch
 For more information about using Java on Heroku, see these Dev Center articles:
 
 - [Java on Heroku](https://devcenter.heroku.com/categories/java)
+
+## Screenshots
+
