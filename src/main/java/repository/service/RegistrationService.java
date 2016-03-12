@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.UserRepository;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -27,6 +29,8 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
 
     public void sendConfirmationEmailToUser(User user){
         final String key = (user.getActivateKey().split("-"))[4];
-        emailService.sendEmail(user.getUsername(),"Account Confirmation","/register/confirm?k="+key);
+        Map<String,String> attributes = new HashMap<>();
+        attributes.put("message","localhost:9090/register/confirm?k="+key);
+        emailService.sendEmail(user,attributes);
     }
 }
