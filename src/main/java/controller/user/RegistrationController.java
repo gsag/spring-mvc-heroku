@@ -3,13 +3,15 @@ package controller.user;
 import entity.user.Gender;
 import entity.user.User;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
+import repository.service.RegistrationService;
 import util.Utils;
 
 import javax.validation.Valid;
@@ -22,6 +24,9 @@ import javax.validation.Valid;
 @RequestMapping("/register")
 public class RegistrationController {
     private static final Logger logger = Logger.getLogger(RegistrationController.class);
+
+    @Autowired
+    RegistrationService registrationService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getRegisterForm(Model model, User user){
@@ -36,7 +41,15 @@ public class RegistrationController {
         if (result.hasErrors()) {
             return getRegisterForm(model,user);
         }else{
+            user.setActivateKey(registrationService.generateActivationKey());
+            registrationService.sendConfirmationEmailToUser(user);
             return "redirect:login";
         }
+    }
+
+    @RequestMapping(value = "/confirm", method = RequestMethod.GET)
+    public String confirmRegistration(@RequestParam(value = "k") String key){
+        logger.info(key);
+        return "welcome";
     }
 }

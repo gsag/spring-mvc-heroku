@@ -69,7 +69,7 @@ public class User implements UserDetails, Serializable {
     @Convert(converter = BooleanConverter.class)
     private boolean activated;
 
-    @Column(name = "activate_key", nullable = false, length = 128)
+    @Column(name = "activate_key", nullable = false, length = 36)
     private String activateKey;
 
     @Size(min = 2, max = 5)
@@ -170,6 +170,14 @@ public class User implements UserDetails, Serializable {
 
     public void setLangKey(String langKey) {
         this.langKey = langKey;
+    }
+
+    public String getActivateKey() {
+        return activateKey;
+    }
+
+    public void setActivateKey(String activateKey) {
+        this.activateKey = activateKey;
     }
 
     @Override

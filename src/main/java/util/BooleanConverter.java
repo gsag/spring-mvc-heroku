@@ -1,7 +1,5 @@
 package util;
 
-import entity.user.Gender;
-
 import javax.persistence.AttributeConverter;
 
 /**

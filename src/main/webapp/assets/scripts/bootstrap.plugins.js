@@ -16,4 +16,4 @@ $(document).ready(function(){
         $('.list-group').find('a').removeClass('active');
         $that.addClass('active');
     });
-})
+});
