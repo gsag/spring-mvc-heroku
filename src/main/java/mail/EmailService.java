@@ -14,6 +14,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -75,5 +76,9 @@ public class EmailService{
         } catch(MailException | MessagingException me){
             logger.error(me);
         }
+    }
+
+    public Map<String,String> getEmailAttributesMap(){
+        return new HashMap<>();
     }
 }

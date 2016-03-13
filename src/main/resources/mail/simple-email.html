@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:remove="all">Template for HTML email (simple)</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="${message}"></p>
+    <!--/*@thymesVar id="requestURL" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="confirmURL" type="java.lang.String"*/-->
+    <a th:href="${requestURL}+${confirmURL}" target="_blank" th:text="#{register.email.confirmationLink}"></a>
 </body>
 </html>

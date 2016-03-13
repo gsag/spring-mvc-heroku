@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import repository.service.RegistrationService;
 import util.Utils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -37,12 +39,13 @@ public class RegistrationController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String register(Model model, @Valid @ModelAttribute User user, BindingResult result){
+    public String register(HttpServletRequest request, Model model,
+                           @Valid @ModelAttribute User user, BindingResult result){
         if (result.hasErrors()) {
             return getRegisterForm(model,user);
         }else{
             user.setActivateKey(registrationService.generateActivationKey());
-            registrationService.sendConfirmationEmailToUser(user);
+            registrationService.sendConfirmationEmailToUser(request,user);
             return "redirect:login";
         }
     }

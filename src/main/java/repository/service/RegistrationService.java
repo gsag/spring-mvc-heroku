@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -27,10 +28,15 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
         return UUID.randomUUID().toString();
     }
 
-    public void sendConfirmationEmailToUser(User user){
+    public void sendConfirmationEmailToUser(HttpServletRequest request, User user){
+        emailService.sendEmail(user,getfilledEmailAttributesMap(request,user));
+    }
+
+    private Map<String,String> getfilledEmailAttributesMap(HttpServletRequest request, User user){
+        Map<String,String> attributes = emailService.getEmailAttributesMap();
         final String key = (user.getActivateKey().split("-"))[4];
-        Map<String,String> attributes = new HashMap<>();
-        attributes.put("message","localhost:9090/register/confirm?k="+key);
-        emailService.sendEmail(user,attributes);
+        attributes.put("confirmURL","/confirm?k="+key);
+        attributes.put("requestURL",request.getRequestURL().toString());
+        return attributes;
     }
 }
