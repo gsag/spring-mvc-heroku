@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body style="border: 1px solid #5E478B">
+    <section style="padding:0em 1em 1em 1em">
+        <!--/*@thymesVar id="requestURL" type="java.lang.String"*/-->
+        <!--/*@thymesVar id="confirmURL" type="java.lang.String"*/-->
+        <h2 style="color: #5E478B">spring-mvc-heroku</h2>
+
+        <p th:text="|#{register.email.intro} ${name}|"></p>
+        <p th:text="#{register.email.content}"></p>
+
+        <a th:href="${requestURL}+${confirmURL}" target="_blank" th:text="#{register.email.confirmationLink}"></a>
+    </section>
+</body>
+</html>

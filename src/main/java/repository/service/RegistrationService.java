@@ -29,12 +29,13 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
     }
 
     public void sendConfirmationEmailToUser(HttpServletRequest request, User user){
-        emailService.sendEmail(user,getfilledEmailAttributesMap(request,user));
+        emailService.sendConfirmationEmail(user,getfilledEmailAttributesMap(request,user));
     }
 
     private Map<String,String> getfilledEmailAttributesMap(HttpServletRequest request, User user){
         Map<String,String> attributes = emailService.getEmailAttributesMap();
         final String key = (user.getActivateKey().split("-"))[4];
+        attributes.put("name",user.getFirstName());
         attributes.put("confirmURL","/confirm?k="+key);
         attributes.put("requestURL",request.getRequestURL().toString());
         return attributes;

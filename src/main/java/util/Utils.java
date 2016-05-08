@@ -22,4 +22,9 @@ public class Utils {
     public static Locale[] getEnabledLocales(){
         return new Locale[]{LocaleConstants.ENGLISH, LocaleConstants.PORTUGUESE_BR};
     }
+
+    public static Locale localeParser(String locale){
+        String[] lang_country = locale.split("_");
+        return (lang_country.length == 1) ? new Locale(lang_country[0]) : new Locale(lang_country[0], lang_country[1]);
+    }
 }

@@ -11,10 +11,13 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import util.LocaleConstants;
+import util.Utils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -32,44 +35,23 @@ public class EmailService{
     @Autowired
     private TemplateEngine templateEngine;
 
-    public void sendEmail(final String toAddress, final String subject, final String msgBody) {
+    public void sendConfirmationEmail(User user, Map<String,String> attributes){
         try{
             // Prepare message using a Spring helper
             final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
             final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, WebMvcConfiguration.DEFAULT_CHAR_ENCODING);
 
             // Prepare the evaluation context
-            final Context context = new Context(LocaleContextHolder.getLocale());
-            context.setVariable("message",msgBody);
-
-            message.setTo(toAddress);
-            message.setSubject(subject);
-
-            // Create the HTML body using Thymeleaf
-            final String htmlContent = this.templateEngine.process("simple-email.html", context);
-            message.setText(htmlContent, true);
-
-            mailSender.send(mimeMessage);
-        } catch(MailException | MessagingException me){
-            logger.error(me);
-        }
-    }
-
-    public void sendEmail(User user, Map<String,String> attributes){
-        try{
-            // Prepare message using a Spring helper
-            final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
-            final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, WebMvcConfiguration.DEFAULT_CHAR_ENCODING);
-
-            // Prepare the evaluation context
-            final Context context = new Context(LocaleContextHolder.getLocale());
+            final Context context = new Context(Utils.localeParser(user.getLangKey()));
             attributes.forEach(context::setVariable);
 
             message.setTo(user.getUsername());
-            message.setSubject("");
+            message.setSubject(user.getLangKey().equals(LocaleConstants.PORTUGUESE_BR.toString())
+                    ? "spring-mvc-heroku - Confirmação de Cadastro"
+                    : "spring-mvc-heroku - Register Confirmation");
 
             // Create the HTML body using Thymeleaf
-            final String htmlContent = this.templateEngine.process("simple-email.html", context);
+            final String htmlContent = this.templateEngine.process("confirmation_email.html", context);
             message.setText(htmlContent, true);
 
             mailSender.send(mimeMessage);
