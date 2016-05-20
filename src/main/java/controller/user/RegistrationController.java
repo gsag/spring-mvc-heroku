@@ -4,6 +4,7 @@ import entity.user.Gender;
 import entity.user.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,9 @@ import util.Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * Created by guilherme on 10/02/16.
@@ -43,8 +47,16 @@ public class RegistrationController {
         if (result.hasErrors()) {
             return getRegisterForm(model,user);
         }else{
-            user.setActivateKey(registrationService.generateActivationKey());
-            registrationService.sendConfirmationEmailToUser(request,user);
+            try{
+                user.setActivateKey(registrationService.generateActivationKey());
+                user.setRegisterDate(LocalDate.now());
+                user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+                registrationService.saveEntity(user);
+                registrationService.sendConfirmationEmailToUser(request,user);
+            }catch (Exception e) {
+                logger.error(e.getMessage());
+                return getRegisterForm(model, user);
+            }
             return "redirect:login";
         }
     }
@@ -52,6 +64,8 @@ public class RegistrationController {
     @RequestMapping(value = "/confirm", method = RequestMethod.GET)
     public String confirmRegistration(@RequestParam(value = "k") String key){
         logger.info(key);
+        Optional<User> user = registrationService.findUserByUUID(key);
+        logger.info(user.isPresent()? user.get().getActivateKey():user);
         return "welcome";
     }
 }

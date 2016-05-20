@@ -2,13 +2,17 @@ package repository.service;
 
 import entity.user.User;
 import mail.EmailService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -16,7 +20,10 @@ import java.util.UUID;
  * Service for Registering logic
  */
 @Service
+@Transactional(rollbackFor = Exception.class, readOnly = true)
 public class RegistrationService extends AbstractRepositoryService<UserRepository> {
+
+    private static final Logger logger = Logger.getLogger(RegistrationService.class);
 
     @Autowired
     UserRepository userRepository;
@@ -39,5 +46,11 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
         attributes.put("confirmURL","/confirm?k="+key);
         attributes.put("requestURL",request.getRequestURL().toString());
         return attributes;
+    }
+
+    @Transactional
+    public Optional<User> findUserByUUID(String uuid){
+        Optional<User> userFound = userRepository.findUserByUUID(uuid);
+        return userFound;
     }
 }
