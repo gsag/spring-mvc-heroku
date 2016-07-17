@@ -66,6 +66,14 @@ public class RegistrationController {
         logger.info(key);
         Optional<User> user = registrationService.findUserByUUID(key);
         logger.info(user.isPresent()? user.get().getActivateKey():user);
+        if(user.isPresent()){
+            logger.info("Usuário encontrado e será ativado - " + user.get().getActivateKey());
+            User registered = user.get();
+            registered.setActivated(Boolean.TRUE);
+            registrationService.updateEntity(registered);
+        }else{
+            logger.warn("Usuário não encontrado, deverá ser tratado.");
+        }
         return "welcome";
     }
 }

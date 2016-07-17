@@ -50,7 +50,6 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
 
     @Transactional
     public Optional<User> findUserByUUID(String uuid){
-        Optional<User> userFound = userRepository.findUserByUUID(uuid);
-        return userFound;
+        return userRepository.findUserByUUID(uuid);
     }
 }
