@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -33,29 +34,38 @@ public class RegistrationController {
     @Autowired
     RegistrationService registrationService;
 
+    @ModelAttribute("languages")
+    public Locale[] getEnabledLanguages(){
+        return Utils.getEnabledLocales();
+    }
+
+    @ModelAttribute("genders")
+    public Gender[] getGenders(){
+        return Gender.values();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public String getRegisterForm(Model model, User user){
-        model.addAttribute("user",user);
-        model.addAttribute("genders",Gender.values());
-        model.addAttribute("languages", Utils.getEnabledLocales());
+    public String getRegisterForm(Model model){
+        model.addAttribute("user", new User());
         return "user/registration/register_form";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String register(HttpServletRequest request, Model model,
-                           @Valid @ModelAttribute User user, BindingResult result){
+    public String register(HttpServletRequest request, Model model, @Valid @ModelAttribute User user,
+                           BindingResult result){
         if (result.hasErrors()) {
-            return getRegisterForm(model,user);
+            return "user/registration/register_form";
         }else{
-            try{
+            if(!registrationService.isUserAlreadyRegistered(user)) {
+                logger.info("entrou " + user.getUsername());
                 user.setActivateKey(registrationService.generateActivationKey());
                 user.setRegisterDate(LocalDate.now());
                 user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
                 registrationService.saveEntity(user);
-                registrationService.sendConfirmationEmailToUser(request,user);
-            }catch (Exception e) {
-                logger.error(e.getMessage());
-                return getRegisterForm(model, user);
+                registrationService.sendConfirmationEmailToUser(request, user);
+            }else{
+                result.rejectValue("username", "register.form.field.username.error");
+                return "user/registration/register_form";
             }
             return "redirect:login";
         }

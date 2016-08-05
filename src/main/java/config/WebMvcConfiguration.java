@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -40,6 +41,14 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     private static final String TEMPLATE_RESOLVER_SUFFIX = ".html";
     private static final String TEMPLATE_RESOLVER_TEMPLATE_MODE = "HTML5";
     private static final String TEMPLATE_RESOLVER_CHAR_ENCODING = DEFAULT_CHAR_ENCODING;
+
+    /**
+     * Faz o redirecionamento do / para /welcome
+     */
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/", "/welcome");
+    }
 
     /*
      * Configure Template Resolver - Thymeleaf

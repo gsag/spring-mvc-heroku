@@ -22,7 +22,6 @@ public class WelcomeController{
 	@RequestMapping(method = RequestMethod.GET)
 	public String getWelcomePage(Model model, @AuthenticationPrincipal User user) {
         viewModelService.getModelWithUserAttributes(model,user);
-        logger.info("Usuário ativo: "+ user);
-        return "welcome";
+	    return (user != null) ? "dashboard" : "welcome";
 	}
 }

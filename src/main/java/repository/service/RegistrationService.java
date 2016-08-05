@@ -4,13 +4,13 @@ import entity.user.User;
 import mail.EmailService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -51,5 +51,20 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
     @Transactional
     public Optional<User> findUserByUUID(String uuid){
         return userRepository.findUserByUUID(uuid);
+    }
+
+    @Transactional
+    public UserDetails findUserByUsername(User user){
+        return userRepository.findUserByUsername(user.getUsername());
+    }
+
+    public Boolean isUserAlreadyRegistered(User user){
+        Boolean anwser = Boolean.TRUE;
+        try{
+            findUserByUsername(user);
+        } catch (UsernameNotFoundException e){
+            anwser = Boolean.FALSE;
+        }
+        return anwser;
     }
 }

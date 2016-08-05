@@ -23,14 +23,14 @@ public class UserRepository extends AbstractRepository<User,Long>{
     private EntityManager entityManager;
 
     public UserDetails findUserByUsername(String username) throws UsernameNotFoundException {
-        List<User> users = entityManager.unwrap(Session.class)
+        User user = (User) entityManager.unwrap(Session.class)
                 .createCriteria(User.class)
-                .add(Restrictions.eq("username",username)).list();
+                .add(Restrictions.eq("username",username)).uniqueResult();
 
-        if(users.isEmpty()){
+        if(user == null){
             throw new UsernameNotFoundException("O usuário "+ username+" não foi encontrado.");
         }
-        return users.get(0);
+        return user;
     }
 
     public Optional<User> findUserByUUID(String uuid){
