@@ -20,3 +20,4 @@ hs_err_pid*
 **/.idea/dataSources.ids
 **/.idea/dataSources.xml
 **/.idea/dataSources.local.xml
+**/.idea/*
