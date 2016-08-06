@@ -5,12 +5,12 @@ This application was created following the [Getting Started with Java on Heroku]
 
 ## Features
 
-You will find in this project:
+You will find in this Maven project:
 
 - Integration with the Web Framework Spring MVC.
 - Configurations done through Java config and annotations.
 - Integration with Thymeleaf templates.
-- Integration and authentication with Spring Security.
+- Security and authentication with Spring Security.
 
 
 ## Running Locally
@@ -20,7 +20,7 @@ Make sure you have **Java 8** and **Maven** installed.  Also, install the [Herok
 ```sh
 $ git clone https://github.com/gsag/spring-mvc-heroku.git
 $ cd spring-mvc-heroku
-$ sh run.sh
+$ ./run.sh
 ```
 
 Your app should now be running on [localhost:9090](http://localhost:9090/).
