@@ -1,6 +1,6 @@
 package controller;
 
-import controller.service.ViewModelService;
+import controller.service.ControllerHelper;
 import entity.user.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ public class WelcomeController{
 	private static final Logger logger = Logger.getLogger(WelcomeController.class);
 
     @Autowired
-    ViewModelService viewModelService;
+	ControllerHelper helper;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getWelcomePage(Model model, @AuthenticationPrincipal User user) {
-        viewModelService.getModelWithUserAttributes(model,user);
+		helper.addUserAttributesToModel(model, user);
 	    return (user != null) ? "dashboard" : "welcome";
 	}
 }

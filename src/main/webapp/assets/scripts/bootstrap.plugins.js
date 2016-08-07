@@ -3,14 +3,11 @@
  * Bootstrap plugins
  */
 
-/* Active tooltip */
 $(document).ready(function() {
     // Activate tooltip
     $('[data-toggle="tooltip"]').tooltip();
-});
 
-/* Change active class for list-group-itens*/
-$(document).ready(function(){
+    /* Change active class for list-group-itens*/
     $('.list-group a').click(function(e) {
         $that = $(this);
         $('.list-group').find('a').removeClass('active');

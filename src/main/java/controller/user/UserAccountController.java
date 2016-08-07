@@ -1,7 +1,7 @@
 package controller.user;
 
+import controller.service.ControllerHelper;
 import controller.service.ProfilePathService;
-import controller.service.ViewModelService;
 import entity.user.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,14 @@ public class UserAccountController {
     private static final Logger logger = Logger.getLogger(UserAccountController.class);
 
     @Autowired
-    ViewModelService viewModelService;
+    ControllerHelper helper;
 
     @Autowired
     ProfilePathService pathService;
 
     @RequestMapping(value = {"profile", "profile/{path}"}, method = RequestMethod.GET)
     public String getProfilePage(@PathVariable Optional<String> path, Model model, @AuthenticationPrincipal User user) {
-        viewModelService.getModelWithUserAttributes(model,user);
+        helper.addUserAttributesToModel(model, user);
         pathService.getModelWithRequestURI(model);
         return "user/account/" + pathService.getViewNameByPath(path);
     }

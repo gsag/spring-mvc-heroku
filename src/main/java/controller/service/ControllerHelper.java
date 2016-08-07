@@ -6,18 +6,17 @@ import org.springframework.ui.Model;
 import util.Utils;
 
 /**
- * Created by guilherme on 16/02/16.
- * Page Model Service
+ * Created by guilherme on 06/08/16.
  */
 
 @Service
-public class ViewModelService {
+public class ControllerHelper {
 
-    public Model getModelWithUserAttributes(Model model, User user){
+    public ControllerHelper addUserAttributesToModel(Model model, User user){
         if(user != null) {
             model.addAttribute("activeUser", user.getFirstName() + " " + user.getLastName());
             model.addAttribute("gravatar", Utils.getGravatarUrl(user.getUsername()));
         }
-        return model;
+        return this;
     }
 }

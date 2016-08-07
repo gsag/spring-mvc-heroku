@@ -7,40 +7,71 @@
 <section id="profileSection" layout:fragment="content">
     <div class="container">
         <div class="starter-template row">
-            <aside id="MenuProfileLinks" class="col-md-3">
-                <div class="list-group">
-                    <!--/*@thymesVar id="requestURI" type="String"*/-->
-                    <a th:href="@{/account/profile/info}" class="list-group-item"
-                       th:classappend="${
-                            (#httpServletRequest.getRequestURI() == requestURI+'/info'
-                            || #httpServletRequest.getRequestURI() == requestURI
-                            || #httpServletRequest.getRequestURI() == requestURI+'/') ? 'active':''
-                       }">
-                        <i class="fa fa-user"></i>
-                        <span th:text="#{profile.links.userInfo}"></span>
-                    </a>
-                    <a th:href="@{/account/profile/preferences}" class="list-group-item"
-                       th:classappend="${#httpServletRequest.getRequestURI() == requestURI+'/preferences' ? 'active':''}">
-                        <i class="fa fa-cogs"></i>
-                        <span th:text="#{profile.links.preferences}"></span>
-                    </a>
-                    <a th:href="@{/account/profile/settings}" class="list-group-item"
-                       th:classappend="${#httpServletRequest.getRequestURI() == requestURI+'/settings' ? 'active':''}">
-                        <i class="fa fa-wrench"></i>
-                        <span th:text="#{profile.links.accountSettings}"></span>
-                    </a>
-                </div>
-            </aside>
+            <div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#userInfo" aria-controls="userInfo" role="tab" data-toggle="tab">
+                            <span th:text="#{profile.links.userInfo}"></span>
+                        </a>
+                    </li>
 
-            <section id="profileContent">
-                <div class="col-md-9">
-                    <div class="panel panel-default">
-                        <div class="panel-body" layout:fragment="profile-content">
-                            <article>Conteudo principal</article>
-                        </div>
+                    <li role="presentation">
+                        <a href="#preferences" aria-controls="preferences" role="tab" data-toggle="tab">
+                            <span th:text="#{profile.links.preferences}"></span>
+                        </a>
+                    </li>
+
+                    <li role="presentation">
+                        <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+                            <span th:text="#{profile.links.accountSettings}"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="userInfo">
+                        profile
                     </div>
+                    <div role="tabpanel" class="tab-pane fade" id="profile">...</div>
+                    <div role="tabpanel" class="tab-pane fade" id="messages">...</div>
                 </div>
-            </section>
+
+            </div>
+            <!--<aside id="MenuProfileLinks" class="col-md-3">-->
+                <!--<div class="list-group">-->
+                    <!--&lt;!&ndash;/*@thymesVar id="requestURI" type="String"*/&ndash;&gt;-->
+                    <!--<a th:href="@{/account/profile/info}" class="list-group-item"-->
+                       <!--th:classappend="${-->
+                            <!--(#httpServletRequest.getRequestURI() == requestURI+'/info'-->
+                            <!--|| #httpServletRequest.getRequestURI() == requestURI-->
+                            <!--|| #httpServletRequest.getRequestURI() == requestURI+'/') ? 'active':''-->
+                       <!--}">-->
+                        <!--<i class="fa fa-user"></i>-->
+                        <!--<span th:text="#{profile.links.userInfo}"></span>-->
+                    <!--</a>-->
+                    <!--<a th:href="@{/account/profile/preferences}" class="list-group-item"-->
+                       <!--th:classappend="${#httpServletRequest.getRequestURI() == requestURI+'/preferences' ? 'active':''}">-->
+                        <!--<i class="fa fa-cogs"></i>-->
+                        <!--<span th:text="#{profile.links.preferences}"></span>-->
+                    <!--</a>-->
+                    <!--<a th:href="@{/account/profile/settings}" class="list-group-item"-->
+                       <!--th:classappend="${#httpServletRequest.getRequestURI() == requestURI+'/settings' ? 'active':''}">-->
+                        <!--<i class="fa fa-wrench"></i>-->
+                        <!--<span th:text="#{profile.links.accountSettings}"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</aside>-->
+
+            <!--<section id="profileContent">-->
+                <!--<div class="col-md-9">-->
+                    <!--<div class="panel panel-default">-->
+                        <!--<div class="panel-body" layout:fragment="profile-content">-->
+                            <!--<article>Conteudo principal</article>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</section>-->
         </div>
     </div>
 </section>
