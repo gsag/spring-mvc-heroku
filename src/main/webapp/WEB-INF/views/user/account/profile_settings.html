@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorator="user/account/profile_home">
-
-<section layout:fragment="profile-content">
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="profile-content">
     <article>
         Página de Configurações
     </article>
-</section>
+</th:block>
 </html>

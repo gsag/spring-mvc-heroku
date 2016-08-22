@@ -57,7 +57,6 @@ public class RegistrationController {
             return "user/registration/register_form";
         }else{
             if(!registrationService.isUserAlreadyRegistered(user)) {
-                logger.info("entrou " + user.getUsername());
                 user.setActivateKey(registrationService.generateActivationKey());
                 user.setRegisterDate(LocalDate.now());
                 user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));

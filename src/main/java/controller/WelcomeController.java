@@ -22,6 +22,6 @@ public class WelcomeController{
 	@RequestMapping(method = RequestMethod.GET)
 	public String getWelcomePage(Model model, @AuthenticationPrincipal User user) {
 		helper.addUserAttributesToModel(model, user);
-	    return (user != null) ? "dashboard" : "welcome";
+	    return (user != null) ? "user/dashboard" : "welcome";
 	}
 }

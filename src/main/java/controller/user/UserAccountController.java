@@ -29,12 +29,11 @@ public class UserAccountController {
     ControllerHelper helper;
 
     @Autowired
-    ProfilePathService pathService;
+    ProfilePathService profilePathService;
 
     @RequestMapping(value = {"profile", "profile/{path}"}, method = RequestMethod.GET)
     public String getProfilePage(@PathVariable Optional<String> path, Model model, @AuthenticationPrincipal User user) {
         helper.addUserAttributesToModel(model, user);
-        pathService.getModelWithRequestURI(model);
-        return "user/account/" + pathService.getViewNameByPath(path);
+        return profilePathService.getViewByPath(path);
     }
 }

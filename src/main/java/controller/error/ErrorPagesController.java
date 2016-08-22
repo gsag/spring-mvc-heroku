@@ -18,9 +18,4 @@ public class ErrorPagesController {
     public String forbidden() {
         return "/error/403";
     }
-
-    @RequestMapping("/500")
-    public String internalServerError() {
-        return "/error/500";
-    }
 }

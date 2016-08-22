@@ -15,10 +15,11 @@ import java.util.Set;
 
 @Service
 public class ProfilePathService {
+    public final String DEFAULT_PROFILE_PREFIX = "profile_";
+    public final String DEFAULT_PROFILE_SUFFIX = ":: profile-content";
+    public final String USER_ACCOUNT_VIEW = "user/account/" + DEFAULT_PROFILE_PREFIX;
 
     private final Set<String> availablePaths;
-
-    public static final String DEFAULT_PROFILE_PREFIX = "profile_";
 
     public ProfilePathService() {
         this.availablePaths = new HashSet<>();
@@ -35,13 +36,9 @@ public class ProfilePathService {
         return this.availablePaths.contains(path.get());
     }
 
-    public String getViewNameByPath(Optional<String> path){
+    public String getViewByPath(Optional<String> path){
         return (path.isPresent() && isPathValid(path))
-                ? DEFAULT_PROFILE_PREFIX + path.get()
-                : DEFAULT_PROFILE_PREFIX + "info";
-    }
-
-    public Model getModelWithRequestURI(Model model){
-        return model.addAttribute("requestURI","/account/profile");
+                ? USER_ACCOUNT_VIEW + path.get() + DEFAULT_PROFILE_SUFFIX
+                : USER_ACCOUNT_VIEW + "home";
     }
 }
