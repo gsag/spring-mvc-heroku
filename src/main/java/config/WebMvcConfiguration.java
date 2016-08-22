@@ -72,6 +72,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     public TemplateResolver emailTemplateResolver() {
         TemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix(EMAIL_TEMPLATE_RESOLVER_PREFIX);
+        templateResolver.setSuffix(TEMPLATE_RESOLVER_SUFFIX);
         templateResolver.setTemplateMode(TEMPLATE_RESOLVER_TEMPLATE_MODE);
         templateResolver.setOrder(1);
         return templateResolver;

@@ -51,7 +51,7 @@ public class EmailService{
                     : "spring-mvc-heroku - Register Confirmation");
 
             // Create the HTML body using Thymeleaf
-            final String htmlContent = this.templateEngine.process("confirmation_email.html", context);
+            final String htmlContent = this.templateEngine.process("confirmation_email", context);
             message.setText(htmlContent, true);
 
             mailSender.send(mimeMessage);
