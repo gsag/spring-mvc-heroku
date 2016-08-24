@@ -4,20 +4,19 @@ import config.WebMvcConfiguration;
 import entity.user.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
+import org.thymeleaf.context.WebContext;
 import util.LocaleConstants;
 import util.Utils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -35,14 +34,15 @@ public class EmailService{
     @Autowired
     private TemplateEngine templateEngine;
 
-    public void sendConfirmationEmail(User user, Map<String,String> attributes){
+    public void sendConfirmationEmail(HttpServletRequest request, User user, Map<String,String> attributes){
         try{
             // Prepare message using a Spring helper
             final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
             final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, WebMvcConfiguration.DEFAULT_CHAR_ENCODING);
 
             // Prepare the evaluation context
-            final Context context = new Context(Utils.localeParser(user.getLangKey()));
+            final WebContext context = new WebContext(  request, null, request.getServletContext(),
+                                                        Utils.localeParser(user.getLangKey()));
             attributes.forEach(context::setVariable);
 
             message.setTo(user.getUsername());

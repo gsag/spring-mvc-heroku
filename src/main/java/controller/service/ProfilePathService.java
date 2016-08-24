@@ -1,7 +1,6 @@
 package controller.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;

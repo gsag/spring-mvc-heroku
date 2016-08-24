@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -37,7 +36,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     public static final String DEFAULT_CHAR_ENCODING = "UTF-8";
     private static final String TEMPLATE_RESOLVER_PREFIX = "/WEB-INF/views/";
-    private static final String EMAIL_TEMPLATE_RESOLVER_PREFIX = "/mail/";
+    private static final String EMAIL_TEMPLATE_RESOLVER_PREFIX = "mail/";
     private static final String TEMPLATE_RESOLVER_SUFFIX = ".html";
     private static final String TEMPLATE_RESOLVER_TEMPLATE_MODE = "HTML5";
     private static final String TEMPLATE_RESOLVER_CHAR_ENCODING = DEFAULT_CHAR_ENCODING;

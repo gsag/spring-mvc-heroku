@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import repository.service.RegistrationService;
 import util.Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Optional;
@@ -51,38 +51,46 @@ public class RegistrationController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String register(HttpServletRequest request, Model model, @Valid @ModelAttribute User user,
-                           BindingResult result){
+    public String register(HttpServletRequest request, @Valid @ModelAttribute User user, BindingResult result, RedirectAttributes attributes){
         if (result.hasErrors()) {
             return "user/registration/register_form";
         }else{
-            if(!registrationService.isUserAlreadyRegistered(user)) {
-                user.setActivateKey(registrationService.generateActivationKey());
-                user.setRegisterDate(LocalDate.now());
-                user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-                registrationService.saveEntity(user);
-                registrationService.sendConfirmationEmailToUser(request, user);
-            }else{
+            if(registrationService.isUserAlreadyRegistered(user)) {
                 result.rejectValue("username", "register.form.field.username.error");
                 return "user/registration/register_form";
             }
+
+            if(!registrationService.isUserPasswordEqualToConfirmedPassword(user)) {
+                result.rejectValue("confirmPassword", "register.form.field.confirmpassword.error");
+                return "user/registration/register_form";
+            }
+
+            user.setActivateKey(registrationService.generateActivationKey());
+            user.setRegisterDate(LocalDate.now());
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            registrationService.saveEntity(user);
+            registrationService.sendConfirmationEmailToUser(request, user);
+
+            attributes.addFlashAttribute("mensagem",
+                    registrationService.getMessageFromMessageSource("register.email.send.success", user));
+
             return "redirect:login";
         }
     }
 
     @RequestMapping(value = "/confirm", method = RequestMethod.GET)
-    public String confirmRegistration(@RequestParam(value = "k") String key){
-        logger.info(key);
+    public String confirmRegistration(@RequestParam(value = "k") String key, RedirectAttributes attributes){
         Optional<User> user = registrationService.findUserByUUID(key);
-        logger.info(user.isPresent()? user.get().getActivateKey():user);
         if(user.isPresent()){
             logger.info("Usuário encontrado e será ativado - " + user.get().getActivateKey());
             User registered = user.get();
             registered.setActivated(Boolean.TRUE);
             registrationService.updateEntity(registered);
+            attributes.addFlashAttribute("mensagem",
+                    registrationService.getMessageFromMessageSource("register.email.confirmed.success", registered));
         }else{
             logger.warn("Usuário não encontrado, deverá ser tratado.");
         }
-        return "welcome";
+        return "redirect:/login";
     }
 }

@@ -34,6 +34,18 @@
                 <strong><span th:text="#{login.info.logoutSuccess}"></span></strong>
             </div>
 
+            <!--/*@thymesVar id="mensagem" type="String"*/-->
+            <div th:if="${!#strings.isEmpty(mensagem)}"
+                 class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <span>
+                    <strong th:text="${mensagem}"></strong>
+                </span>
+            </div>
+
             <fieldset>
                 <legend><i class="fa fa-sign-in"></i> <span th:text="#{login.title}"></span></legend>
                 <div class="form-group">

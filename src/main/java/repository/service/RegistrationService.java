@@ -4,11 +4,13 @@ import entity.user.User;
 import mail.EmailService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repository.UserRepository;
+import util.Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -31,19 +33,21 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
     @Autowired
     EmailService emailService;
 
+    @Autowired
+    MessageSource messageSource;
+
     public String generateActivationKey(){
         return UUID.randomUUID().toString();
     }
 
     public void sendConfirmationEmailToUser(HttpServletRequest request, User user){
-        emailService.sendConfirmationEmail(user,getfilledEmailAttributesMap(request,user));
+        emailService.sendConfirmationEmail(request, user, getEmailAttributesMap(request,user));
     }
 
-    private Map<String,String> getfilledEmailAttributesMap(HttpServletRequest request, User user){
+    private Map<String,String> getEmailAttributesMap(HttpServletRequest request, User user){
         Map<String,String> attributes = emailService.getEmailAttributesMap();
-        final String key = (user.getActivateKey().split("-"))[4];
         attributes.put("name",user.getFirstName());
-        attributes.put("confirmURL","/confirm?k="+key);
+        attributes.put("confirmURL","/confirm?k=" + (user.getActivateKey().split("-"))[4]);
         attributes.put("requestURL",request.getRequestURL().toString());
         return attributes;
     }
@@ -54,17 +58,25 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
     }
 
     @Transactional
-    public UserDetails findUserByUsername(User user){
-        return userRepository.findUserByUsername(user.getUsername());
+    public UserDetails findUserByUsername(String username){
+        return userRepository.findUserByUsername(username);
     }
 
     public Boolean isUserAlreadyRegistered(User user){
         Boolean anwser = Boolean.TRUE;
         try{
-            findUserByUsername(user);
+            findUserByUsername(user.getUsername());
         } catch (UsernameNotFoundException e){
             anwser = Boolean.FALSE;
         }
         return anwser;
+    }
+
+    public Boolean isUserPasswordEqualToConfirmedPassword(User user){
+        return user.getConfirmPassword().equals(user.getPassword());
+    }
+
+    public String getMessageFromMessageSource(String code, User user){
+        return messageSource.getMessage(code, new String[]{user.getFirstName()}, Utils.localeParser(user.getLangKey()));
     }
 }

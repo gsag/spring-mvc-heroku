@@ -43,8 +43,6 @@ public class User implements UserDetails, Serializable {
     private String password;
 
     @Transient
-    @NotNull
-    @Size(min = 6, max = 60)
     private String confirmPassword;
 
     @NotEmpty
