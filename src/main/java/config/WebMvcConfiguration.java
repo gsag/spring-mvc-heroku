@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableWebMvc
 @EnableCaching
-@ComponentScan(basePackages = {"controller", "util"})
+@ComponentScan(basePackages = {"controller", "util", "factory"})
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     public static final String DEFAULT_CHAR_ENCODING = "UTF-8";

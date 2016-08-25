@@ -1,6 +1,7 @@
 package repository.service;
 
 import entity.user.User;
+import factory.MessageSourceBuilder;
 import mail.EmailService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
     EmailService emailService;
 
     @Autowired
-    MessageSource messageSource;
+    MessageSourceBuilder messageBuilder;
 
     public String generateActivationKey(){
         return UUID.randomUUID().toString();
@@ -77,6 +78,10 @@ public class RegistrationService extends AbstractRepositoryService<UserRepositor
     }
 
     public String getMessageFromMessageSource(String code, User user){
-        return messageSource.getMessage(code, new String[]{user.getFirstName()}, Utils.localeParser(user.getLangKey()));
+        return messageBuilder
+                .addMessageCode(code)
+                .addMessageArguments(user.getFirstName())
+                .addMessageLocale(Utils.localeParser(user.getLangKey()))
+                .build();
     }
 }
