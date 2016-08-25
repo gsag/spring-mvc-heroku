@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import repository.service.RegistrationService;
+import security.AuthorityType;
 import util.Utils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,6 +69,7 @@ public class RegistrationController {
             user.setActivateKey(registrationService.generateActivationKey());
             user.setRegisterDate(LocalDate.now());
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.setNewCredentialInAuthorities(AuthorityType.ROLE_USER);
             registrationService.saveEntity(user);
             registrationService.sendConfirmationEmailToUser(request, user);
 
