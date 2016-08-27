@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="template/layout">
+
+<section layout:fragment="content">
+    <script th:src="@{/assets/ckeditor/ckeditor.js}"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <div class="container">
+        <div class="starter-template">
+            <h1>Testando editores HTML <small>WYSIWYG  (what you see is what you get)</small></h1>
+
+            <section class="section" role="editor" aria-labelledby="editorFormCK">
+                <h2>CKEditor 4.5.10
+                    <small>
+                        <a th:href="@{/assets/ckeditor/samples/}">Acessar página de exemplo do CKEditor</a>
+                    </small>
+                    <br/>
+                    <small>
+                        <a th:href="@{https://cksource.com/accessibility-checker/demo.html}">
+                            Acessar página de funcionalidades premium. Contém accessibility checker.</a>
+                    </small>
+                </h2>
+                <form id="editorFormCK">
+                    <textarea name="editorck" id="editorck" rows="10" cols="80">
+                        This is my textarea to be replaced with CKEditor.
+                    </textarea>
+                    <script>
+                        CKEDITOR.replace('editorck');
+                    </script>
+                </form>
+            </section>
+
+            <section class="section" role="editor" aria-labelledby="editorFormMCE">
+                <h2>TinyMCE 4.4.2
+                    <small>
+                        <a th:href="@{https://www.tinymce.com/docs/demo/full-featured/}">Acessar página de exemplo do TinyMCE</a>
+                    </small>
+                    <br/>
+                    <small>
+                        <a th:href="@{https://www.tinymce.com/pricing/#demo-enterprise}">
+                            Acessar página de funcionalidades premium. Contém accessibility checker.</a>
+                    </small>
+                    <form id="editorFormMCE">
+                    <textarea name="editormce" id="editormce" rows="10" cols="80">
+                        This is my textarea to be replaced with TinyMCE.
+                    </textarea>
+                        <script>tinymce.init({ selector:'#editormce' });</script>
+                    </form>
+                </h2>
+            </section>
+        </div>
+    </div><!-- /.container -->
+</section>
+</html>

@@ -43,6 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*").permitAll()
                 .antMatchers("/welcome").permitAll()
                 .antMatchers("/register/*").permitAll()
+                .antMatchers("/welcome/editor").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/welcome").failureUrl("/login?error")
                 .successHandler(authenticationSuccessHandler).permitAll()

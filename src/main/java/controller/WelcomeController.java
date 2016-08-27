@@ -24,4 +24,9 @@ public class WelcomeController{
 		helper.addUserAttributesToModel(model, user);
 	    return (user != null) ? "user/dashboard" : "welcome";
 	}
+
+	@RequestMapping(value = "/editor", method = RequestMethod.GET)
+	public String getEditorTestingPage(){
+		return "editor";
+	}
 }
