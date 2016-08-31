@@ -21,6 +21,9 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 	box-shadow: 0 0 3px rgba(0, 0, 0, .15);
 
 	outline: none;
+
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .cke_balloon_title

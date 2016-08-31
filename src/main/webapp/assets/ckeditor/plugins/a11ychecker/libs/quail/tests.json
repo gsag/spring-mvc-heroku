@@ -5771,7 +5771,8 @@
     "title": {
       "de": "Paragraphen dürfen nicht für Überschriften verwendet werden",
       "en": "Paragraphs must not be used for headers",
-      "nl": "Alinea's worden niet gebruikt als header"
+      "nl": "Alinea's worden niet gebruikt als header",
+      "pt-br": "Parágrafos não devem ser utilizados como cabeçalhos"
     },
     "description": {
       "de": "Überschriften sind für nicht-sehende Benutzer sehr nützlich um in der Seitenstruktur zu navigieren. Einen Paragraphen nur groß oder fett zu formatieren, damit es wie eine Überschrift aussieht, macht daraus keine Überschrift.",
