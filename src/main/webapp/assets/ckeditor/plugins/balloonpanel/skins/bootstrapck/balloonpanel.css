@@ -6,7 +6,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 .cke_balloon
 {
 	position: absolute;
-	z-index: 10000;
+	z-index: 10;
 
 	background: #fff;
 	border: 1px solid #b2b2b2;

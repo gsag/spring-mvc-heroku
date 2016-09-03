@@ -6,7 +6,8 @@
 
 <section layout:fragment="content">
     <script th:src="@{/assets/ckeditor/ckeditor.js}"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script th:src="@{/assets/tinymce/tinymce.min.js}"></script>
+    <script th:src="@{/assets/textboxio-client/textboxio/textboxio.js}"></script>
     <div class="container">
         <div class="starter-template">
             <h1>Testando editores HTML <small>WYSIWYG  (what you see is what you get)</small></h1>
@@ -19,7 +20,7 @@
                     <br/>
                     <small>
                         <a th:href="@{https://cksource.com/accessibility-checker/demo.html}">
-                            Acessar página de funcionalidades premium. Contém accessibility checker.</a>
+                            Acessar página de demonstração do accessibility checker.</a>
                     </small>
                 </h2>
                 <form id="editorFormCK">
@@ -47,10 +48,47 @@
                     <textarea name="editormce" id="editormce" rows="10" cols="80">
                         This is my textarea to be replaced with TinyMCE.
                     </textarea>
-                        <script>tinymce.init({ selector:'#editormce' });</script>
+                        <script>tinymce.init({ selector:'#editormce', language: 'pt_BR' });</script>
                     </form>
                 </h2>
             </section>
+
+            <section class="section" role="editor" aria-labelledby="editorFormTextBox">
+                <h2>Textbox.io 2.0.0.181
+                    <small>
+                        <a th:href="@{https://textbox.io/wysiwyg-html-editor/}">Acessar página de exemplo do TextBox</a>
+                    </small>
+                    <br/>
+                    <small>
+                        Não tem página de demonstração do accessibility checker.
+                    </small>
+                    <form id="editorFormTextBox">
+                        <div class="editableDiv" style="height: 447px;">
+                            <h1>Example.css</h1>
+                            <p>Stylesheet loaded via Textbox.io configuration object.</p>
+                        </div>
+                        <script th:src="@{/assets/textboxio-client/textboxio/config.js}"></script>
+                    </form>
+                </h2>
+            </section>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Dica sobre cabeçalhos</h4>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div><!-- /.container -->
 </section>

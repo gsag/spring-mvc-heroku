@@ -5777,7 +5777,8 @@
     "description": {
       "de": "Überschriften sind für nicht-sehende Benutzer sehr nützlich um in der Seitenstruktur zu navigieren. Einen Paragraphen nur groß oder fett zu formatieren, damit es wie eine Überschrift aussieht, macht daraus keine Überschrift.",
       "en": "Headers are extremely useful for non-sighted users to navigate the structure of the page. Formatting a paragraph to just be big or bold, while it might visually look like a header, does not make it a header.",
-      "nl": "Headers van <code>h1</code> - <code>h6</code> zijn handig voor blinde en slechtziende gebruikers om door een pagina te navigeren. Maak alinea's daarom niet op zodat deze lijkt op een header. Dit werkt verwarrend."
+      "nl": "Headers van <code>h1</code> - <code>h6</code> zijn handig voor blinde en slechtziende gebruikers om door een pagina te navigeren. Maak alinea's daarom niet op zodat deze lijkt op een header. Dit werkt verwarrend.",
+      "pt-br": "Cabeçalhos são extremamente úteis para usuários deficientes visuais, pois permitem à eles navegar pela estrutura da página. <code>H1</code> <br/><br/> <a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\" class=\"cke_a11yc_ui_button\" role=\"button\" style=\"-webkit-user-select: none; text-decoration: none; display: block;\"><span>Abrir dica</span></a>"
     },
     "guidelines": {
       "wcag": {
