@@ -29,12 +29,24 @@
                         <p><strong>Accessibility Checker Is Here!</strong></p>
                     </textarea>
                     <script>
-                        CKEDITOR.replace('editorck').on('key', function(event) {
-                            console.log("onkeyup event triggered.");
-                            var editor = CKEDITOR.instances.editorck;
+                        var instance = CKEDITOR.replace('editorck');
+                        instance.on('focus', function(event) {
+                            var editor = CKEDITOR.instances['editorck'];
                             if(editor.plugins.a11ychecker){
-                                editor.execCommand("a11ychecker");
+                                var a11ycheckerCommand = new CKEDITOR.command(editor, {
+                                    exec: function( editor ) {
+                                        editor.execCommand("a11ychecker");
+                                    }
+                                });
+                                a11ycheckerCommand.setState(CKEDITOR.TRISTATE_ON);
+                                a11ycheckerCommand.exec(editor);
                             }
+                        });
+                        instance.on('key', function (event) {
+//                            console.log(CKEDITOR.plugins.a11ychecker.IssueList.prototype.count());
+//                            console.log(CKEDITOR.plugins.a11ychecker.issues);
+                            var editor = CKEDITOR.instances['editorck'];
+                            editor.execCommand("a11ychecker.listen");
                         });
                     </script>
                 </form>

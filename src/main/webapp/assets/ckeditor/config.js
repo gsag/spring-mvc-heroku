@@ -43,4 +43,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.skin = 'bootstrapck';
 
 	config.toolbarCanCollapse = true;
+
+	config.extraPlugins = 'base64image';
 };
