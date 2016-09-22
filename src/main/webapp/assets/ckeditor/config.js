@@ -8,23 +8,20 @@ CKEDITOR.editorConfig = function( config ) {
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
-	// The toolbar groups arrangement, optimized for two toolbar rows.
-	config.toolbarGroups = [
-		{ name: 'document', groups: [ 'document', 'mode', 'doctools' ] },
-		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-		{ name: 'links', groups: [ 'links' ] },
-		{ name: 'insert', groups: [ 'insert' ] },
-		{ name: 'forms', groups: [ 'forms' ] },
-		{ name: 'tools', groups: [ 'tools' ] },
-		{ name: 'others', groups: [ 'others' ] },
-		'/',
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-		{ name: 'styles', groups: [ 'styles' ] },
-		{ name: 'colors', groups: [ 'colors' ] },
-		{ name: 'about', groups: [ 'about' ] }
-	];
+	// The toolbar widgets arrangement, optimized for two toolbar rows.
+    config.toolbar = [
+        { name: 'document', items: [ 'A11ychecker', '-', 'Source' ] },
+        { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+        { name: 'editing', items: [ 'Scayt' ] },
+        { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+        { name: 'insert', items: [ 'base64image', 'Mathjax', 'Table', 'HorizontalRule', 'SpecialChar'] },
+        { name: 'tools', items: [ 'Maximize' ] },
+        '/',
+        { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat' ] },
+        { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+        { name: 'styles', items: [ 'Styles', 'Format' ] },
+        { name: 'about', items: [ 'About' ] }
+    ];
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
@@ -38,11 +35,11 @@ CKEDITOR.editorConfig = function( config ) {
 
 	config.defaultlanguage = 'pt-br';
 
-    config.language = 'pt-br'
+	config.language = 'pt-br'
 
 	config.skin = 'bootstrapck';
 
 	config.toolbarCanCollapse = true;
 
-	config.extraPlugins = 'base64image';
+    config.mathJaxLib = '//cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS_HTML';
 };

@@ -13,7 +13,7 @@
             <h1>Testando editores HTML <small>WYSIWYG  (what you see is what you get)</small></h1>
 
             <section class="section" role="editor" aria-labelledby="editorFormCK">
-                <h2>CKEditor 4.5.10
+                <h2>CKEditor 4.5.11
                     <small>
                         <a th:href="@{/assets/ckeditor/samples/}">Acessar página de exemplo do CKEditor</a>
                     </small>
@@ -43,10 +43,7 @@
                             }
                         });
                         instance.on('key', function (event) {
-//                            console.log(CKEDITOR.plugins.a11ychecker.IssueList.prototype.count());
-//                            console.log(CKEDITOR.plugins.a11ychecker.issues);
-                            var editor = CKEDITOR.instances['editorck'];
-                            editor.execCommand("a11ychecker.listen");
+                            console.log('Erros encontrados: '+issueListLength);
                         });
                     </script>
                 </form>
