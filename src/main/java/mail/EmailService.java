@@ -60,6 +60,30 @@ public class EmailService{
         }
     }
 
+    public void sendEmail(HttpServletRequest request, Map<String,String> attributes){
+        try{
+            // Prepare message using a Spring helper
+            final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
+            final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, WebMvcConfiguration.DEFAULT_CHAR_ENCODING);
+
+            // Prepare the evaluation context
+            final WebContext context = new WebContext(  request, null, request.getServletContext(),
+                    Utils.localeParser("pt-BR"));
+            attributes.forEach(context::setVariable);
+
+            message.setTo("gsag.dh@gmail.com");
+            message.setSubject("Resultados do experimento: "+ attributes.get("id"));
+
+            // Create the HTML body using Thymeleaf
+            final String htmlContent = this.templateEngine.process("email", context);
+            message.setText(htmlContent, true);
+
+            mailSender.send(mimeMessage);
+        } catch(MailException | MessagingException me){
+            logger.error(me);
+        }
+    }
+
     public Map<String,String> getEmailAttributesMap(){
         return new HashMap<>();
     }

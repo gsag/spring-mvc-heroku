@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="template/layout">
+
+<section layout:fragment="content">
+    <div class="container">
+        <div class="starter-template">
+            <div class="well well-sm">
+                <a th:href="@{/editores}" class="link">Voltar para a seleção dos editores</a>
+            </div>
+            <script th:src="@{/assets/tinymce/tinymce.min.js}"></script>
+            <section class="section" role="editor" aria-labelledby="mceEditorForm">
+                <form id="mceEditorForm">
+                    <input type="text" id="user" class="form-control" placeholder="Digite a sua identificação"
+                    style="margin-bottom: 20px;"/>
+                    <textarea name="editormce" id="editormce" rows="10" cols="80"/>
+                    <script>
+                        tinymce.init({
+                            selector:'#editormce',
+                            language: 'pt_BR',
+                            plugins: "advlist, image, imagetools, table, link, autoresize, charmap, " +
+                            "bdesk_photo, code, paste, eqneditor",
+                            paste_data_images: true
+                        });
+                    </script>
+                    <button id="saveBtn" type="button" class="btn btn-default btn-lg btn-block"
+                            style="margin-top: 20px;">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        Salvar conteúdo</button>
+                    <script>
+                        $("#saveBtn").on("click", function (event) {
+                            var editorData = tinyMCE.get('editormce').getContent();
+                            var json = {"data":editorData, "_editor":"tinymce", "_user":$("#user").val()};
+                            var token = $("meta[name='_csrf']").attr("content");
+                            var header = $("meta[name='_csrf_header']").attr("content");
+                            $.ajax({
+                                url: '/editores',
+                                data: JSON.stringify(json),
+                                dataType: 'text',
+                                type: "POST",
+                                beforeSend: function(xhr) {
+                                    xhr.setRequestHeader("Accept", "text/plain");
+                                    xhr.setRequestHeader("Content-Type", "application/json");
+                                    xhr.setRequestHeader(header, token);
+                                },
+                                success: function(data){
+                                    alert(data);
+                                    $("#saveBtn").prop('disabled', true);
+                                }
+                            });
+                            event.preventDefault();
+                        });
+                    </script>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+</html>

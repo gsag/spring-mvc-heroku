@@ -29,4 +29,9 @@ public class WelcomeController{
 	public String getEditorTestingPage(){
 		return "editor";
 	}
+
+	@RequestMapping(value = "/editor/prototipo", method = RequestMethod.GET)
+	public String getEditorPage(){
+		return "editor_prototype";
+	};
 }

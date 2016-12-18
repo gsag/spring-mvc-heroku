@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="template/layout">
+
+<section layout:fragment="content">
+    <div class="container">
+        <div class="starter-template">
+            <h1>Editores HTML <small>WYSIWYG  (what you see is what you get)</small></h1>
+            <div class="row">
+                <section class="col-md-4 section">
+                    <h2 role="heading">CKEditor</h2>
+                    <a th:href="@{/editores/ckeditor}" class="thumbnail">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/f/fc/CKEditor_logo.png"
+                             alt="CKEditor" class="img-rounded img-responsive"/>
+                    </a>
+                </section>
+
+                <section class="col-md-4 section">
+                    <h2 role="heading">TinyMCE</h2>
+                    <a th:href="@{/editores/tinymce}" class="thumbnail">
+                        <img src="http://hexydec.com/images/content/tinymce.gif"
+                             alt="TinyMCE" class="img-rounded img-responsive"/>
+                    </a>
+                </section>
+
+                <section class="col-md-4 section">
+                    <h2 role="heading">Textbox.io</h2>
+                    <a th:href="@{/editores/textboxio}" class="thumbnail">
+                        <img src="https://1p299h3n07ros00d71qu1tug-wpengine.netdna-ssl.com/wp-content/uploads/2016/07/mono-onlight@4x.png"
+                             alt="Textbox.io" class="img-rounded img-responsive"/>
+                    </a>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+</html>

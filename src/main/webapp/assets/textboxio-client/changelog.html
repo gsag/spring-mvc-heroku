@@ -87,7 +87,54 @@
 					For more detail and working examples, please consult the developer documentation.
 					Older changelog entries are available on the <a href="http://ephox.com/releases">Ephox releases site</a>.
 				</p>
-    <h2>Textbox.io 2.0.0.186</h2>
+    <h2>Textbox.io 2.1.0.198</h2>
+<h3>Please Note</h3>
+<ul><li>The mobile editor UI currently renders on top of all other page elements and blocks touch events outside of the editor. Using a custom button to open a dialog can block user input on mobile.</li></ul>
+<h3>New Features</h3>
+<ul>
+<li>Redesigned hyperlink experience
+        <ul>
+          <li>Insert and edit link dialogs have been combined into a single expandable dialog</li>
+          <li>Invalid links will be highlighted when using the new <a href="http://docs.ephox.com/display/tbio/validation">Link Validation</a> option in the Textbox.io SDK with services included</li>
+          <li>The Link URL field now offers suggestions from within the document as well as recently used links</li>
+          <li>Links can be created to any heading within the content.  Appropriate anchors will be added to the HTML when the link is created.</li>
+          <li>Links can be created to the top and bottom of the content.  Appropriate anchors will be added to the HTML when the content is saved.</li>
+          <li>Legacy anchors in the content will be listed with contextual content to help identify them</li>
+          <li>Remove link is now available on the context menu</li>
+          <li>Document links (including anchor links) can be followed through the context menu, ⌘ + click on OS X, or ctrl + click on other desktop platforms</li>
+        </ul>
+      </li>
+<li>Improved spell checking experience when using the spelling service available in the Textbox.io SDK with services included
+        <ul>
+          <li>Spelling highlights are now updated across the entire visible area of the document, instead of only next to the cursor</li>
+          <li>Support for multi language spell checking on documents with embedded language codes. These codes can be applied with granularity as small as a single word using the <a href="http://docs.ephox.com/display/tbio/Command+Item+IDs">language</a> menu. This feature works with HTML standard <span style="font-family: monospace">lang</span> attributes in the content.</li>
+          <li>The editor's default spelling language can be adjusted to any of our <a href="http://docs.ephox.com/display/tbio/Checking+Spelling">supported spelling languages</a> by the user through the settings menu, and this preference is remembered on a per-site basis</li>
+          <li>Autocorrect can now be disabled by default in the <a href="http://docs.ephox.com/display/tbio/spelling">Spelling</a> configuration option</li>
+        </ul>
+      </li>
+<li>Editor interface accessibility support now works with VoiceOver on iOS devices</li>
+<li>Rewritten HTML serialisation process makes less changes to the HTML when saving, and no longer corrupts script tag contents</li>
+<li>The Find / Replace dialog now highlights the previous search results when reopening the dialog</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>Pasted images were not uploaded when Image Editing was disabled in the configuration</li>
+<li>A number of W3C accessibility violations have been fixed, Textbox.io now passes <a href="https://ainspector.github.io">AInspector</a> validation</li>
+<li>The Insert Link dialog sometimes appeared in an incorrect location if the outer page had scrolled</li>
+<li>Pasting from Microsoft Word with conflicting inline styles merged the styles incorrectly</li>
+<li>Inline dialogs were often positioned too far to the left when using a right-to-left language</li>
+<li>Triple clicking a paragraph no longer applies formatting changes to the following paragraph</li>
+<li>Unordered list dropdown did not display correctly on Chrome 53 and above</li>
+<li>Content focus did not work reliably when using Edge on the Windows 10 Anniversary Update</li>
+<li>Word count was counting element boundaries as whitespaces</li>
+<li>Spell checking treated some European characters as word boundaries</li>
+<li>Large menus that scrolled had their top and bottom borders inside the scrollable area</li>
+<li>Border style issues when the list buttons were configured to be in a menu</li>
+<li>On OS X Chrome 54, undo after a paste action sometimes left the editor scrolled with all content off screen</li>
+<li>Visual artifact left in the document after pasting on FireFox and Internet Explorer</li>
+<li>Inserting a table from a toolbar button instead of the default menu item did not set focus back to the editor</li>
+</ul>
+    <h2>Textbox.io 2.0.0.171</h2>
 <h3>Please Note</h3>
 <ul>
 <li>Significant changes have been made to Textbox.io image management in this release. See our <a href="http://docs.ephox.com/display/tbio/Working+with+Images">Working with Images</a> article for more information.

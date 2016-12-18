@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="template/layout">
+
+<section layout:fragment="content">
+    <div class="container">
+        <div class="starter-template">
+            <div class="well well-sm">
+                <a th:href="@{/editores}" class="link">Voltar para a seleção dos editores</a>
+            </div>
+            <script th:src="@{/assets/textboxio-client/textboxio/textboxio.js}"></script>
+            <section class="section" role="editor" aria-labelledby="editorForm">
+                <form id="editorForm">
+                    <input type="text" id="user" class="form-control" placeholder="Digite a sua identificação"
+                           style="margin-bottom: 20px;"/>
+                    <textarea name="textbox" id="textbox" class="editableDiv" rows="15" cols="80"/>
+                    <button id="saveBtn" type="button" class="btn btn-default btn-lg btn-block"
+                            style="margin-top: 20px;">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        Salvar conteúdo
+                    </button>
+                    <script th:src="@{/assets/textboxio-client/textboxio/config.js}"></script>
+
+                    <script>
+                        $("#saveBtn").on("click", function (event) {
+                            var editorData = editor.content.get();
+                            var json = {"data":editorData, "_editor":"textboxio", "_user":$("#user").val()};
+                            var token = $("meta[name='_csrf']").attr("content");
+                            var header = $("meta[name='_csrf_header']").attr("content");
+                            $.ajax({
+                                url: '/editores',
+                                data: JSON.stringify(json),
+                                dataType: 'text',
+                                type: "POST",
+                                beforeSend: function(xhr) {
+                                    xhr.setRequestHeader("Accept", "text/plain");
+                                    xhr.setRequestHeader("Content-Type", "application/json");
+                                    xhr.setRequestHeader(header, token);
+                                },
+                                success: function(data){
+                                    alert(data);
+                                    $("#saveBtn").prop('disabled', true);
+                                },
+                                error: function (data) {
+                                    alert(data);
+                                }
+                            });
+                            event.preventDefault();
+                        });
+                    </script>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+</html>

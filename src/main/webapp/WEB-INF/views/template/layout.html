@@ -8,11 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="spring, mvc, app, heroku"/>
     <meta name="author" content="Guilherme Alves"/>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
     <link rel="icon" th:href="@{/assets/favicon.ico}"/>
 
     <title>spring-mvc-heroku</title>
 
     <div th:replace="fragments/styles"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
 <header th:replace="fragments/nav :: navigation"></header>

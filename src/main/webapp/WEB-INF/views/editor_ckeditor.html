@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="template/layout">
+
+<section layout:fragment="content">
+    <div class="container">
+        <div class="starter-template">
+            <div class="well well-sm">
+                <a th:href="@{/editores}" class="link">Voltar para a seleção dos editores</a>
+            </div>
+            <script th:src="@{/assets/ckeditor4.6.1/ckeditor.js}"></script>
+            <script th:src="@{/assets/scripts/editor.plugins.js}"></script>
+            <section class="section" role="editor" aria-labelledby="ckeditorForm">
+                <form id="ckeditorForm">
+                    <input type="text" id="user" class="form-control" placeholder="Digite a sua identificação"
+                           style="margin-bottom: 20px;"/>
+                    <textarea name="ckeditor" id="ckeditor" rows="10" cols="80"/>
+                    <button id="saveBtn" type="button" class="btn btn-default btn-lg btn-block"
+                            style="margin-top: 20px;">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        Salvar conteúdo</button>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+</html>
