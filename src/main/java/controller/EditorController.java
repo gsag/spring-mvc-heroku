@@ -4,6 +4,7 @@ import mail.EmailService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Base64;
 import java.util.Map;
 
 /**
@@ -45,7 +47,7 @@ public class EditorController {
         return "editor_textboxio";
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "text/plain")
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     public ResponseEntity<String> save(@RequestBody String jsonString, HttpServletRequest request) {
         ResponseEntity<String> response = null;

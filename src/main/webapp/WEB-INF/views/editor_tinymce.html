@@ -32,7 +32,7 @@
                     <script>
                         $("#saveBtn").on("click", function (event) {
                             var editorData = tinyMCE.get('editormce').getContent();
-                            var json = {"data":editorData, "_editor":"tinymce", "_user":$("#user").val()};
+                            var json = {"data":$.base64.encode(editorData), "_editor":"tinymce", "_user":$("#user").val()};
                             var token = $("meta[name='_csrf']").attr("content");
                             var header = $("meta[name='_csrf_header']").attr("content");
                             $.ajax({

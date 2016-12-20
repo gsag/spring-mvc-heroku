@@ -28,17 +28,18 @@ $(document).ready(function() {
 
     $("#saveBtn").on("click", function (event) {
         var editorData = CKEDITOR.instances['ckeditor'].getData();
-        var json = {"data":editorData, "_editor":"ckeditor", "_user":$("#user").val()};
+        var json = {"data":$.base64.encode(editorData), "_editor":"ckeditor", "_user":$("#user").val()};
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $.ajax({
             url: '/editores',
             data: JSON.stringify(json),
             dataType: 'text',
+            contentType: "application/json; charset:UTF-8",
             type: "POST",
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("Accept", "text/plain");
-                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json; charset:UTF-8");
                 xhr.setRequestHeader(header, token);
             },
             success: function(data){
